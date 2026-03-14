@@ -1,0 +1,11 @@
+{
+  "name": "nobleworld-biz",
+  "version": "1.0.0",
+  "description": "NEBULA: A Journal of Multidisciplinary Scholarship — archive site",
+  "scripts": {
+    "start": "npx serve . -p ${PORT:-3000}"
+  },
+  "dependencies": {
+    "serve": "^14.2.0"
+  }
+}

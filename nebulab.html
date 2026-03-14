@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>nebu[lab] — Nebula Journal</title>
+  <meta name="description" content="nebu[lab]: An experimental companion publication to Nebula journal. ISSN 1838-1472.">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* nebu[lab] has a distinct dark identity */
+    body { background: #0e0e14; }
+
+    .site-header { height: 200px; }
+
+    .title-bar {
+      background: linear-gradient(90deg, #1a1228 0%, #231830 60%, #1a1228 100%);
+      border-bottom: 1px solid #3a2d50;
+    }
+
+    .title-bar h1 { color: #c8b8e8; }
+    .title-bar h1 .issn { color: #8a7aaa; }
+
+    nav.main-nav {
+      background: #12101a;
+      border-bottom: 2px solid #2d2440;
+    }
+
+    nav.main-nav ul li a {
+      color: #8a7aaa;
+    }
+
+    nav.main-nav ul li a:hover,
+    nav.main-nav ul li a.active {
+      color: #c8b8e8;
+      border-bottom-color: #7b5ea7;
+    }
+
+    .page-content { color: #c8c0d8; }
+
+    h2 { color: #c8b8e8; }
+    h3 { color: #b0a0d0; }
+    p  { color: #b0a8c8; }
+
+    .year-heading {
+      color: #6a5a88;
+      border-bottom-color: #2d2440;
+    }
+
+    .lab-issue-section {
+      margin-bottom: 56px;
+    }
+
+    .lab-issue-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #c8b8e8;
+      margin-bottom: 4px;
+    }
+
+    .lab-issue-title .issue-num {
+      font-size: 1.1rem;
+      color: #8a7aaa;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      margin-left: 16px;
+    }
+
+    .lab-grid {
+      margin-top: 24px;
+    }
+
+    .lab-card {
+      background: #18141f;
+      border: 1px solid #2d2440;
+    }
+
+    .lab-card:hover {
+      box-shadow: 0 4px 28px rgba(123,94,167,0.2);
+      border-color: #5a4080;
+    }
+
+    .lab-card .lab-card-body h4 {
+      color: #c8b8e8;
+    }
+
+    .lab-card .lab-card-body p {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 0.9rem;
+      color: #8a7aaa;
+      margin: 6px 0 0;
+      font-style: italic;
+    }
+
+    .ornament { color: #5a4080; }
+
+    footer {
+      background: #0a0910;
+      border-top: 1px solid #1e1830;
+    }
+
+    .journal-tagline {
+      background: #2d1f4a;
+      border: 1px solid #3d2d5a;
+    }
+
+    .content-col p a { color: #a08ad0; }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <img src="images/banner-nebulab.jpg" alt="Deep space nebula — banner image for nebu[lab]">
+  </header>
+
+  <div class="title-bar">
+    <div class="title-bar-inner">
+      <h1>nebu[lab] &nbsp;<span class="issn">ISSN 1838-1472</span></h1>
+    </div>
+  </div>
+
+  <nav class="main-nav">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="whoweare.html">Who We Are</a></li>
+      <li><a href="issues.html">Issues</a></li>
+      <li><a href="africannebula.html">African Nebula</a></li>
+      <li><a href="nebulab.html" class="active">nebu[lab]</a></li>
+    </ul>
+  </nav>
+
+  <main class="page-content">
+    <div class="content-col">
+      <p><em>nebu[lab]</em> was an experimental companion publication to <em>Nebula</em> journal. Its format was deliberately playful and unconventional — shorter pieces, visual experiments, and work that pushed at the edges of what academic publishing could be.</p>
+    </div>
+
+    <div class="ornament">— ✦ —</div>
+
+    <!-- nebu[lab]_mini 02.2011 -->
+    <div class="lab-issue-section">
+      <p class="year-heading">2011</p>
+      <div class="lab-issue-title">
+        nebu[lab]_mini
+        <span class="issue-num">02.2011</span>
+      </div>
+
+      <div class="lab-grid">
+        <div class="lab-card">
+          <img src="images/lab-cryptids.jpg" alt="Here Come the Cryptids — article image">
+          <div class="lab-card-body">
+            <h4>Here Come the Cryptids!</h4>
+          </div>
+        </div>
+        <div class="lab-card">
+          <img src="images/lab-ontologies.jpg" alt="Superstar Ontologies — article image">
+          <div class="lab-card-body">
+            <h4>Superstar Ontologies</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Placeholder for additional issues -->
+    <div class="lab-issue-section">
+      <p class="year-heading">Earlier Issues</p>
+      <p style="color:#6a5a88; font-style:italic; font-family:'EB Garamond', Georgia, serif;">
+        Additional nebu[lab] issues will be added here as the archive is populated.
+      </p>
+    </div>
+
+    <!-- Team -->
+    <div class="ornament">— ✦ —</div>
+    <h2>The nebu[lab] Team</h2>
+    <div class="board-section" style="margin-top:24px;">
+      <ul class="board-list" style="--border:#2d2440;">
+        <li style="border-bottom-color:#2d2440;">
+          <span class="name" style="color:#c8b8e8;">Dr. Michael Angelo Tata, Ph.D.</span>
+          <span class="affiliation" style="color:#6a5a88;">Executive Editor</span>
+        </li>
+        <li style="border-bottom-color:#2d2440;">
+          <span class="name" style="color:#c8b8e8;">Dr. Rebecca Beirne, Ph.D.</span>
+          <span class="affiliation" style="color:#6a5a88;">Advisor</span>
+        </li>
+        <li style="border-bottom-color:#2d2440;">
+          <span class="name" style="color:#c8b8e8;">David Boyle</span>
+          <span class="affiliation" style="color:#6a5a88;">Advisor</span>
+        </li>
+      </ul>
+    </div>
+
+  </main>
+
+  <footer>
+    <span class="footer-title">NEBULA: A Journal of Multidisciplinary Scholarship</span>
+    <span class="footer-issn">ISSN 1449-7751 &nbsp;·&nbsp; Published 2004–2011 &nbsp;·&nbsp; nobleworld.biz</span>
+    <nav class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="whoweare.html">Who We Are</a>
+      <a href="issues.html">Issues</a>
+      <a href="africannebula.html">African Nebula</a>
+      <a href="nebulab.html">nebu[lab]</a>
+    </nav>
+    <p class="footer-copy">© Noble World. All rights reserved. Hosted on GitHub Pages.</p>
+  </footer>
+
+</body>
+</html>
