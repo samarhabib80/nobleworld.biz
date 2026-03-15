@@ -322,6 +322,26 @@
       line-height: 1.65;
     }
 
+    /* ── Page TOC ── */
+    .page-toc {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+
+    .page-toc a {
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.58rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: #5a4080;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .page-toc a:hover { color: #c8b8e8; }
+
     /* ── Team Constellation ── */
     .team-cosmos {
       position: relative;
@@ -721,13 +741,15 @@
 
   <main class="page-content">
     <div class="content-col">
+      <nav class="page-toc"><a href="#issues">Issues</a><a href="#contributors">Contributors</a><a href="#team">About</a></nav>
+
       <p><em>nebu[lab]</em> was an experimental companion publication to <em>Nebula</em> journal. Its format was deliberately playful and unconventional — shorter pieces, visual experiments, and work that pushed at the edges of what academic publishing could be.</p>
     </div>
 
     <div class="ornament">— ✦ —</div>
 
     <!-- nebu[lab] 07.2010 — 02.2011 (combined) -->
-    <div class="lab-issue-section">
+    <div id="issues" class="lab-issue-section">
       <p class="year-heading">2010–2011</p>
       <div class="lab-issue-title">
         nebu[lab] <span class="issue-date">07.2010 — 02.2011</span>
@@ -1082,15 +1104,95 @@
         </a>
       </div>
 
-      <div style="margin-top: 32px;">
-        <a href="nebulab-contributors.html" style="font-family:'Raleway',sans-serif; font-size:0.78rem; letter-spacing:0.12em; text-transform:uppercase; color:#7b5ea7; text-decoration:none; border-bottom: 1px solid #3d2d5a; padding-bottom:2px;">
-          Contributors &rarr;
-        </a>
-      </div>
     </div>
 
     <div class="ornament">— ✦ —</div>
-    <h2>The nebu[lab] Team</h2>
+    <h2 id="contributors">Contributors</h2>
+
+    <div class="team-cosmos">
+      <div class="team-constellation">
+        <div class="team-cluster-label">07 . 2010</div>
+        <div class="team-star-field">
+          <div class="team-star-node" style="--pulse:3.2s" data-contributor="cremona">
+            <div class="team-star-glow"></div>
+            <span class="team-star-name">Cinzia Cremona</span>
+          </div>
+          <div class="team-star-node" style="--pulse:2.8s" data-contributor="fan">
+            <div class="team-star-glow"></div>
+            <span class="team-star-name">Iris Fan Xing</span>
+          </div>
+          <div class="team-star-node" style="--pulse:3.5s" data-contributor="frank">
+            <div class="team-star-glow"></div>
+            <span class="team-star-name">Diane Frank</span>
+          </div>
+          <div class="team-star-node" style="--pulse:2.6s" data-contributor="gander">
+            <div class="team-star-glow"></div>
+            <span class="team-star-name">Forrest Gander</span>
+          </div>
+          <div class="team-star-node" style="--pulse:3.8s" data-contributor="habib">
+            <div class="team-star-glow"></div>
+            <span class="team-star-name">Samar Habib</span>
+          </div>
+          <div class="team-star-node" style="--pulse:3.0s" data-contributor="kelen">
+            <div class="team-star-glow"></div>
+            <span class="team-star-name">Kit Kelen</span>
+          </div>
+          <div class="team-star-node" style="--pulse:2.4s" data-contributor="koukoutsis">
+            <div class="team-star-glow"></div>
+            <span class="team-star-name">Helen Koukoutsis</span>
+          </div>
+          <div class="team-star-node" style="--pulse:3.3s" data-contributor="ksel">
+            <div class="team-star-glow"></div>
+            <span class="team-star-name">Dominika Ksel</span>
+          </div>
+          <div class="team-star-node" style="--pulse:2.9s" data-contributor="lorber">
+            <div class="team-star-glow"></div>
+            <span class="team-star-name">Brendan Lorber</span>
+          </div>
+          <div class="team-star-node" style="--pulse:3.6s" data-contributor="pucciani">
+            <div class="team-star-glow"></div>
+            <span class="team-star-name">Donna Pucciani</span>
+          </div>
+          <div class="team-star-node" style="--pulse:2.7s" data-contributor="tata_c">
+            <div class="team-star-glow"></div>
+            <span class="team-star-name">Michael Angelo Tata</span>
+          </div>
+          <div class="team-star-node" style="--pulse:3.1s" data-contributor="wilson_c">
+            <div class="team-star-glow"></div>
+            <span class="team-star-name">Ronaldo V. Wilson</span>
+          </div>
+          <div class="team-star-node" style="--pulse:3.4s" data-contributor="xavier">
+            <div class="team-star-glow"></div>
+            <span class="team-star-name">Emanuel Xavier</span>
+          </div>
+        </div>
+      </div>
+
+      <p class="team-constellation-hint" style="margin: 40px 0;">· · · · ·</p>
+
+      <div class="team-constellation">
+        <div class="team-cluster-label">02 . 2011</div>
+        <div class="team-star-field">
+          <div class="team-star-node" style="--pulse:2.5s" data-contributor="jeffreys">
+            <div class="team-star-glow"></div>
+            <span class="team-star-name">Joe E. Jeffreys</span>
+          </div>
+          <div class="team-star-node" style="--pulse:3.7s" data-contributor="lang">
+            <div class="team-star-glow"></div>
+            <span class="team-star-name">Dana Lang</span>
+          </div>
+          <div class="team-star-node" style="--pulse:2.3s" data-contributor="wood">
+            <div class="team-star-glow"></div>
+            <span class="team-star-name">Rose Wood</span>
+          </div>
+        </div>
+      </div>
+
+      <p class="team-constellation-hint">select a star to reveal its contributor</p>
+    </div>
+
+    <div class="ornament">— ✦ —</div>
+    <h2 id="team">The nebu[lab] Team</h2>
 
     <div class="team-cosmos">
       <div class="team-constellation">
@@ -1248,9 +1350,10 @@ document.querySelectorAll('.exhibit').forEach(function(exhibit) {
   }
 });
 
-// ── Team constellation bio panel ──
+// ── Constellation bio panel (team + contributors) ──
 (function() {
-  var teamMembers = {
+  var people = {
+    // ── Team ──
     tata: {
       name: "Dr. Michael Angelo Tata, Ph.D.",
       role: "Executive Editor",
@@ -1292,6 +1395,104 @@ document.querySelectorAll('.exhibit').forEach(function(exhibit) {
       role: "Advisor",
       photo: "images/360_IMG_0177_1_.jpg",
       bio: "Ronaldo V. Wilson is the author of <em>Narrative of the Life of the Brown Boy and the White Man</em>, winner of the 2007 Cave Canem Poetry Prize (University of Pittsburgh Press, 2008), and <em>Poems of the Black Object</em>, winner of the 2010 Thom Gunn Award (Futurepoem Books, 2009). He is a graduate of the PhD program in English at the CUNY Graduate Center, and NYU\u2019s Graduate Creative Writing Program. Wilson has won numerous fellowships including the Provincetown Fine Arts Work Center, Cave Canem, Kundiman, Djerassi, Vermont Studio Center, and Yaddo. A co-founder of the Black Took Collective, he teaches creative writing, literature, and African American poetics at Mount Holyoke College."
+    },
+    // ── Contributors 07.2010 ──
+    cremona: {
+      name: "Cinzia Cremona",
+      role: "Contributor \u2014 07.2010",
+      photo: "images/480_live_on_monitor_video_still09_1_.JPG",
+      bio: "Cinzia Cremona is an artist and researcher whose intimate videoperformances focus on relationships, communication and interaction, forming an original body of work that extends into collaborative, participatory and networked practices. For the past four years, Cinzia Cremona has also been co-curating the annual moving image event Visions in the Nunnery at the Nunnery Gallery, London, as well as organizing events, discussions and forums, and publishing reviews and essays."
+    },
+    fan: {
+      name: "Iris Fan Xing",
+      role: "Contributor \u2014 07.2010",
+      photo: "images/369_Iris_Fan.jpg",
+      bio: "Iris Fan Xing is a postgraduate student in the English department at the University of Macau. Fan is also a poetry translator who has translated the works of women poets from the Tang Dynasty, and contemporary Australian poetry (especially the works of Aboriginal women poets)."
+    },
+    frank: {
+      name: "Diane Frank",
+      role: "Contributor \u2014 07.2010",
+      photo: "images/360_dianefrank.jpg",
+      bio: "Diane Frank is an award-winning poet and author of five books of poems, including <em>Entering the Word Temple</em> and <em>The Winter Life of Shooting Stars</em>. Her friends describe her as a harem of seven women in one very small body. She lives in San Francisco where she dances, plays cello, and creates her life as an art form. Diane teaches at San Francisco State University, leads workshops for young writers as a Poet in the School, and directs the Blue Light Press On-line Poetry Workshop. She is also a documentary scriptwriter with expertise in Eastern and sacred art. <em>Blackberries in the Dream House</em>, her first novel, won the Chelson Award for Fiction and was nominated for the Pulitzer Prize."
+    },
+    gander: {
+      name: "Forrest Gander",
+      role: "Contributor \u2014 07.2010",
+      photo: "images/480_forrestpound.jpg",
+      bio: "Forrest Gander\u2019s new books include <em>Core Samples from the World</em> (New Directions, 2011), <em>Watchword</em>, a translation of the Villaurrutia Award-winning collection by Pura Lopez Colome (Wesleyan, 2011), and a translation with Kyoko Yoshida of the selected poems of Kiwao Nomura, <em>Spectacle &amp; Pigsty</em> (OmniDawn, 2011)."
+    },
+    habib: {
+      name: "Samar Habib",
+      role: "Contributor \u2014 07.2010",
+      photo: "images/360_DSC00828.JPG",
+      bio: "Samar Habib is the author of the novel <em>A Tree Like Rain</em> and the chapbook <em>Islands in Space</em>. She is also the author and editor of several works of non-fiction, including <em>Female Homosexuality in the Middle East</em>, and the two-volume collection <em>Islam &amp; Homosexuality</em>. She is editor-in-chief of <em>Nebula</em> and publisher of <em>African Nebula</em> and <em>nebu[lab]</em>."
+    },
+    kelen: {
+      name: "Kit Kelen",
+      role: "Contributor \u2014 07.2010",
+      photo: "images/360_Kelenphoto.jpg",
+      bio: "Christopher (Kit) Kelen\u2019s most recent volumes of poetry are <em>God Preserve Me from Those Who Want What\u2019s Best for Me</em>, published in 2009 by Picaro Press (N.S.W, Australia) and <em>In Conversation with the River</em>, published in 2010 by VAC (Chicago, USA). For the last ten years Kelen has taught Literature and Creative Writing at the University of Macau in south China."
+    },
+    koukoutsis: {
+      name: "Helen Koukoutsis",
+      role: "Contributor \u2014 07.2010",
+      photo: "images/219_Untitled.jpg",
+      bio: "Helen Koukoutsis is a Critical and Cultural Studies scholar specialising in the areas of 19th century American poetry, in particular Emily Dickinson\u2019s verse, medieval mysticism/theology and Zen Buddhist philosophy. For the past 4 years, she has been teaching various literature-based subjects."
+    },
+    ksel: {
+      name: "Dominika Ksel",
+      role: "Contributor \u2014 07.2010",
+      photo: "images/480_kselphoto.jpg",
+      bio: "Dominika Ksel came from Poland in the early 80s and ended up in Gainesville as a result of communist dictatorship. She headed to Brooklyn as a teen in hopes of finding creative resolutions to the imbalances of the world. She completed her undergrad studies in documentary and video art and pursued an MFA in video, performance and installation at Hunter College. Her work deals with socio-political elements, manifesting possibilities for the future and investigating dimensions beyond the physics of reality through artistic experiments."
+    },
+    lorber: {
+      name: "Brendan Lorber",
+      role: "Contributor \u2014 07.2010",
+      photo: "images/480_Lorberphoto.jpg",
+      bio: "You know what Brendan Lorber\u2019s bio sounds like? It sounds like a man trying to convince the world of something he doesn\u2019t quite believe himself. What\u2019s left of him is a leaf that the wind blows from one gutter to another. He also edits <em>LUNGFULL!</em>, a journal of terrible mistakes, whose lousy personality can be briefly grieved over at: www.lungfull.org."
+    },
+    pucciani: {
+      name: "Donna Pucciani",
+      role: "Contributor \u2014 07.2010",
+      photo: "images/416_DonPhoto_1_.jpg",
+      bio: "Donna Pucciani has published several hundred poems in the U.S., Europe, Australia and Asia, in such diverse journals as <em>International Poetry Review</em>, <em>Spoon River Poetry Review</em>, <em>The Pedestal</em>, <em>Journal of the American Medical Association</em>, and <em>The Christian Century</em>. Her books of poetry include <em>The Other Side of Thunder</em>, <em>Jumping off the Train</em>, and <em>Chasing the Saints</em>. She has been nominated three times for the Pushcart Prize and currently serves as Vice-President of the Poets Club of Chicago."
+    },
+    tata_c: {
+      name: "Michael Angelo Tata",
+      role: "Contributor \u2014 07.2010",
+      photo: "images/480_Tataphoto.jpg",
+      bio: "Michael Angelo Tata\u2019s poetry has most recently appeared in <em>Gertrude</em>, <em>Frigg</em> and <em>Ugly Couch</em>. He has contributed work on Daniel Paul Schreber to the collection <em>Modernity and Neurology</em> (Palgrave Macmillan) and on Jacques Derrida to the journal <em>Parallax</em> (Routledge). His <em>Andy Warhol: Sublime Superficiality</em> arrives from Intertheory Press in 2010."
+    },
+    wilson_c: {
+      name: "Ronaldo V. Wilson",
+      role: "Contributor \u2014 07.2010",
+      photo: "images/360_IMG_0177_1_.jpg",
+      bio: "Ronaldo V. Wilson is the author of <em>Narrative of the Life of the Brown Boy and the White Man</em>, winner of the 2007 Cave Canem Poetry Prize, and <em>Poems of the Black Object</em>, winner of the 2010 Thom Gunn Award. A co-founder of the Black Took Collective, he teaches creative writing, literature, and African American poetics at Mount Holyoke College."
+    },
+    xavier: {
+      name: "Emanuel Xavier",
+      role: "Contributor \u2014 07.2010",
+      photo: "images/320_Emanuel_Xavier_by_Bobby_Miller_2-_b_w_1_.jpg",
+      bio: "Emanuel Xavier is author of the novel <em>Christ Like</em> and editor of <em>Bullets &amp; Butterflies</em> and <em>Mariposas: A Modern Anthology of Queer Latino Poetry</em>. An award-winning poet, he has been featured on Russell Simmons presents Def Poetry, The New York Times, and CNN. He created the Glam Slam, first held at The Nuyorican Poets Cafe. His spoken word/music collaboration album <em>Legendary</em> was recently released on iTunes and his new poetry collection <em>If Jesus Were Gay &amp; Other Poems</em> will be published in April 2011. Of Puerto Rican and Ecuadorian descent, he lives in Brooklyn, New York."
+    },
+    // ── Contributors 02.2011 ──
+    jeffreys: {
+      name: "Joe E. Jeffreys",
+      role: "Contributor \u2014 02.2011",
+      photo: "images/423_JEJbyVesPitts.jpg",
+      bio: "Joe E. Jeffreys is a drag historian. He teaches Theatre Studies at New York University\u2019s Tisch School of the Arts Drama Department and has also taught at Stony Brook University, Purchase and Lehman College. He has published in encyclopedias, journals, including <em>Women in Performance</em> and <em>Theatre History Studies</em>, and in the popular press, from Time Out New York and The Village Voice to Out and The Advocate. He produces the series Drag Show Video Verit\u00e9 and his video shorts have been screened internationally. Photo taken by Ves Pitts."
+    },
+    lang: {
+      name: "Dana Lang",
+      role: "Contributor \u2014 02.2011",
+      photo: "images/480_Photo_4.jpg",
+      bio: "Dana Lang is a singer/songwriter, poet and playwright who has written, directed and performed her work in New York City, where she lives and works as a freelance writer and editor. Dana earned her MFA in Playwriting at Brooklyn College, where she studied with master of experimental theater Mac Wellman, who greatly inspired the idea behind \u201cDeath Caps and the Jersey Devil.\u201d While her play somewhat departs from his evil prescription, it served as fertile ground for her to continue exploring and merging multiple narratives, characters and themes, with the resulting work still being largely Mac\u2019s fault."
+    },
+    wood: {
+      name: "Rose Wood",
+      role: "Contributor \u2014 02.2011",
+      photo: "images/183_Roseglamourshot.jpg",
+      bio: "Rose Wood is a performance artist who honed her craft in countless Downtown New York City clubs, and has since performed around the world. Her gender-bending acts have earned her much critical acclaim, including the \u201cMost Exotic Moves\u201d award at the 2006 Exotic World Competition and NY Press\u2019 \u201cBest of New York\u201d in 2008. She has also appeared in numerous films and has been profiled in the award-winning documentaries \u201cWhat\u2019s in a Name\u201d and \u201cShape of the Shapeless.\u201d She currently divides her time between New York and London."
     }
   };
 
@@ -1299,8 +1500,8 @@ document.querySelectorAll('.exhibit').forEach(function(exhibit) {
   var overlay = document.getElementById('teamBioOverlay');
   var activeNode = null;
 
-  function openTeamBio(key) {
-    var m = teamMembers[key];
+  function openBio(key, node) {
+    var m = people[key];
     if (!m) return;
 
     document.getElementById('teamBioPhoto').src = m.photo;
@@ -1310,14 +1511,14 @@ document.querySelectorAll('.exhibit').forEach(function(exhibit) {
     document.getElementById('teamBioText').innerHTML = m.bio;
 
     if (activeNode) activeNode.classList.remove('active');
-    activeNode = document.querySelector('[data-team="' + key + '"]');
+    activeNode = node;
     if (activeNode) activeNode.classList.add('active');
 
     panel.classList.add('open');
     overlay.classList.add('open');
   }
 
-  function closeTeamBio() {
+  function closeBio() {
     panel.classList.remove('open');
     overlay.classList.remove('open');
     if (activeNode) {
@@ -1328,14 +1529,15 @@ document.querySelectorAll('.exhibit').forEach(function(exhibit) {
 
   document.querySelectorAll('.team-star-node').forEach(function(node) {
     node.addEventListener('click', function() {
-      openTeamBio(this.dataset.team);
+      var key = this.dataset.team || this.dataset.contributor;
+      openBio(key, this);
     });
   });
 
-  document.getElementById('teamBioClose').addEventListener('click', closeTeamBio);
-  overlay.addEventListener('click', closeTeamBio);
+  document.getElementById('teamBioClose').addEventListener('click', closeBio);
+  overlay.addEventListener('click', closeBio);
   document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') closeTeamBio();
+    if (e.key === 'Escape') closeBio();
   });
 })();
 </script>
