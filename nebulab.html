@@ -475,7 +475,6 @@
       <li><a href="index.html">Home</a></li>
       <li><a href="index.html#issues">Issues</a></li>
       <li><a href="index.html#about">About</a></li>
-      <li><a href="index.html#whoweare">Who We Are</a></li>
       <li><a href="africannebula.html">African Nebula</a></li>
       <li><a href="nebulab.html" class="active">nebu[lab]</a></li>
     </ul>
@@ -652,18 +651,18 @@
         <div class="exhibit-viewer">
           <div class="exhibit-image">
             <img data-slides='[
-              {"src":"images/481_1_Stoch_1_.jpg","title":"Stoch series, 1","desc":""},
-              {"src":"images/542_2_Stoch_1_.jpg","title":"Stoch series, 2","desc":""},
-              {"src":"images/542_3_Stoch_1_.jpg","title":"Stoch series, 3","desc":""},
-              {"src":"images/623_4_Stoch_1_.jpg","title":"Stoch series, 4","desc":""},
-              {"src":"images/631_5_Stoch_1_.jpg","title":"Stoch series, 5","desc":""},
-              {"src":"images/630_6_Stoch_1_.jpg","title":"Stoch series, 6","desc":""},
-              {"src":"images/558_7_Stoch_1_.jpg","title":"Stoch series, 7","desc":""},
-              {"src":"images/558_8_Stoch_1_.jpg","title":"Stoch series, 8","desc":""}
-            ]' src="images/481_1_Stoch_1_.jpg" alt="Stoch series">
+              {"src":"images/481_1_Stoch_1_.jpg","title":"Stochastic Series, 1","desc":""},
+              {"src":"images/542_2_Stoch_1_.jpg","title":"Stochastic Series, 2","desc":""},
+              {"src":"images/542_3_Stoch_1_.jpg","title":"Stochastic Series, 3","desc":""},
+              {"src":"images/623_4_Stoch_1_.jpg","title":"Stochastic Series, 4","desc":""},
+              {"src":"images/631_5_Stoch_1_.jpg","title":"Stochastic Series, 5","desc":""},
+              {"src":"images/630_6_Stoch_1_.jpg","title":"Stochastic Series, 6","desc":""},
+              {"src":"images/558_7_Stoch_1_.jpg","title":"Stochastic Series, 7","desc":""},
+              {"src":"images/558_8_Stoch_1_.jpg","title":"Stochastic Series, 8","desc":""}
+            ]' src="images/481_1_Stoch_1_.jpg" alt="Stochastic Series">
           </div>
           <div class="exhibit-note">
-            <span class="note-title">Stoch series, 1</span>
+            <span class="note-title">Stochastic Series, 1</span>
             <span class="note-desc note-empty">Visual work</span>
           </div>
         </div>
@@ -797,36 +796,51 @@
         <span class="section-label">moving image</span>
       </div>
 
-      <!-- MOVING IMAGE EXHIBIT -->
-      <div class="exhibit" data-exhibit="movingimage">
-        <div class="exhibit-artist">Moving Image</div>
-        <div class="exhibit-viewer">
-          <div class="exhibit-image" id="mi-frame">
-            <img data-slides='[
-              {"type":"pdf","src":"images/rosewood.pdf","title":"Transfixed By Rose Wood","desc":"Joe E. Jeffreys","href":"images/rosewood.pdf"},
-              {"type":"video","src":"https://www.youtube.com/embed/SM1FWmcUU_8","title":"My Scarlet Genitive","desc":"Cinzia Cremona"},
-              {"type":"video","src":"https://www.youtube.com/embed/O_pYdT2r_5k","title":"The Other Person","desc":"Cinzia Cremona"},
-              {"type":"video","src":"https://www.youtube.com/embed/LAPgVOw4Y3Q","title":"The Spectacle","desc":"Dominika Ksel"}
-            ]' src="" alt="" style="display:none;">
-            <div class="mi-placeholder" style="text-align:center; padding:40px 20px;">
-              <svg viewBox="0 0 24 24" style="width:48px;height:48px;fill:#5a4080;margin-bottom:12px;display:block;margin-left:auto;margin-right:auto;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zM6 20V4h7v5h5v11H6z"/></svg>
-              <span style="font-family:'Raleway',sans-serif;font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:#6a5a88;display:block;">PDF — click to open</span>
-            </div>
+      <!-- MOVING IMAGE TILES -->
+      <div class="chapter-grid">
+        <a class="chapter-tile" href="images/rosewood.pdf" target="_blank">
+          <div>
+            <span class="chapter-numeral">I</span>
+            <span class="chapter-title">Transfixed By Rose Wood</span>
           </div>
-          <div class="exhibit-note">
-            <span class="note-title">Transfixed By Rose Wood</span>
-            <span class="note-desc">Joe E. Jeffreys</span>
+          <div>
+            <span class="chapter-author">Joe E. Jeffreys</span>
+            <span class="chapter-format">↓ PDF</span>
           </div>
-        </div>
-        <div class="exhibit-controls">
-          <button class="exhibit-btn" data-dir="prev" disabled>
-            <svg viewBox="0 0 24 24"><polygon points="19,20 9,12 19,4"/><rect x="5" y="4" width="3" height="16"/></svg>
-          </button>
-          <span class="exhibit-counter">1 / 4</span>
-          <button class="exhibit-btn" data-dir="next">
-            <svg viewBox="0 0 24 24"><polygon points="5,4 15,12 5,20"/><rect x="16" y="4" width="3" height="16"/></svg>
-          </button>
-        </div>
+        </a>
+
+        <a class="chapter-tile" href="https://www.youtube.com/watch?v=SM1FWmcUU_8" target="_blank">
+          <div>
+            <span class="chapter-numeral">II</span>
+            <span class="chapter-title">My Scarlet Genitive</span>
+          </div>
+          <div>
+            <span class="chapter-author">Cinzia Cremona</span>
+            <span class="chapter-format">▶ Video</span>
+          </div>
+        </a>
+
+        <a class="chapter-tile" href="https://www.youtube.com/watch?v=O_pYdT2r_5k" target="_blank">
+          <div>
+            <span class="chapter-numeral">III</span>
+            <span class="chapter-title">The Other Person</span>
+          </div>
+          <div>
+            <span class="chapter-author">Cinzia Cremona</span>
+            <span class="chapter-format">▶ Video</span>
+          </div>
+        </a>
+
+        <a class="chapter-tile" href="https://www.youtube.com/watch?v=LAPgVOw4Y3Q" target="_blank">
+          <div>
+            <span class="chapter-numeral">IV</span>
+            <span class="chapter-title">The Spectacle</span>
+          </div>
+          <div>
+            <span class="chapter-author">Dominika Ksel</span>
+            <span class="chapter-format">▶ Video</span>
+          </div>
+        </a>
       </div>
 
       <div style="margin-top: 32px;">
@@ -913,7 +927,6 @@
       <a href="index.html">Home</a>
       <a href="index.html#issues">Issues</a>
       <a href="index.html#about">About</a>
-      <a href="index.html#whoweare">Who We Are</a>
       <a href="africannebula.html">African Nebula</a>
       <a href="nebulab.html">nebu[lab]</a>
     </nav>
