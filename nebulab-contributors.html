@@ -7,8 +7,7 @@
   <meta name="description" content="Contributors to nebu[lab], an experimental companion publication to Nebula journal. ISSN 1838-1472.">
   <link rel="stylesheet" href="css/style.css">
   <style>
-    /* nebu[lab] has a distinct dark identity */
-    body { background: #0e0e14; }
+    body { background: #0e0e14; overflow-x: hidden; }
 
     .site-header { height: 200px; }
 
@@ -16,99 +15,290 @@
       background: linear-gradient(90deg, #1a1228 0%, #231830 60%, #1a1228 100%);
       border-bottom: 1px solid #3a2d50;
     }
-
     .title-bar h1 { color: #c8b8e8; }
     .title-bar h1 .issn { color: #8a7aaa; }
 
-    nav.main-nav {
-      background: #12101a;
-      border-bottom: 2px solid #2d2440;
-    }
-
-    nav.main-nav ul li a {
-      color: #8a7aaa;
-    }
-
+    nav.main-nav { background: #12101a; border-bottom: 2px solid #2d2440; }
+    nav.main-nav ul li a { color: #8a7aaa; }
     nav.main-nav ul li a:hover,
-    nav.main-nav ul li a.active {
-      color: #c8b8e8;
-      border-bottom-color: #7b5ea7;
-    }
+    nav.main-nav ul li a.active { color: #c8b8e8; border-bottom-color: #7b5ea7; }
 
     .page-content { color: #c8c0d8; }
-
     h2 { color: #c8b8e8; }
-    h3 { color: #b0a0d0; }
-    p  { color: #b0a8c8; }
-
-    .year-heading {
-      color: #6a5a88;
-      border-bottom-color: #2d2440;
-    }
-
     .ornament { color: #5a4080; }
 
-    footer {
-      background: #0a0910;
-      border-top: 1px solid #1e1830;
+    footer { background: #0a0910; border-top: 1px solid #1e1830; }
+
+    /* ── Star-field background ── */
+    .cosmos {
+      position: relative;
+      min-height: 600px;
+      padding: 60px 0 80px;
     }
 
-    .journal-tagline {
-      background: #2d1f4a;
+    .cosmos::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(1px 1px at 10% 15%, rgba(200,184,232,0.7), transparent),
+        radial-gradient(1px 1px at 25% 45%, rgba(200,184,232,0.5), transparent),
+        radial-gradient(1px 1px at 40% 8%, rgba(200,184,232,0.4), transparent),
+        radial-gradient(1px 1px at 55% 72%, rgba(200,184,232,0.6), transparent),
+        radial-gradient(1px 1px at 70% 30%, rgba(200,184,232,0.3), transparent),
+        radial-gradient(1px 1px at 85% 60%, rgba(200,184,232,0.5), transparent),
+        radial-gradient(1px 1px at 92% 18%, rgba(200,184,232,0.4), transparent),
+        radial-gradient(1px 1px at 15% 80%, rgba(200,184,232,0.3), transparent),
+        radial-gradient(1px 1px at 33% 55%, rgba(200,184,232,0.4), transparent),
+        radial-gradient(1px 1px at 60% 90%, rgba(200,184,232,0.5), transparent),
+        radial-gradient(1px 1px at 78% 48%, rgba(200,184,232,0.3), transparent),
+        radial-gradient(1px 1px at 5% 35%, rgba(200,184,232,0.6), transparent),
+        radial-gradient(1px 1px at 48% 25%, rgba(200,184,232,0.4), transparent),
+        radial-gradient(1.5px 1.5px at 20% 65%, rgba(160,138,208,0.8), transparent),
+        radial-gradient(1.5px 1.5px at 65% 12%, rgba(160,138,208,0.6), transparent),
+        radial-gradient(1.5px 1.5px at 88% 85%, rgba(160,138,208,0.5), transparent);
+      pointer-events: none;
+      animation: twinkle 8s ease-in-out infinite alternate;
+    }
+
+    @keyframes twinkle {
+      0%   { opacity: 0.6; }
+      50%  { opacity: 1; }
+      100% { opacity: 0.7; }
+    }
+
+    /* ── Constellation cluster ── */
+    .constellation {
+      position: relative;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .cluster-label {
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: #5a4080;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    /* SVG lines layer */
+    .constellation-lines {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .constellation-lines line {
+      stroke: #3d2d5a;
+      stroke-width: 1;
+      opacity: 0.5;
+    }
+
+    /* ── Star nodes ── */
+    .star-field {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 28px 36px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .star-node {
+      position: relative;
+      width: 80px;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .star-node:hover { transform: scale(1.12); }
+
+    .star-glow {
+      width: 18px;
+      height: 18px;
+      margin: 0 auto 10px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #c8b8e8 0%, #7b5ea7 40%, transparent 70%);
+      box-shadow: 0 0 12px 4px rgba(123,94,167,0.5), 0 0 30px 8px rgba(123,94,167,0.2);
+      animation: pulse var(--pulse, 3s) ease-in-out infinite alternate;
+      transition: box-shadow 0.3s ease;
+    }
+
+    .star-node:hover .star-glow {
+      box-shadow: 0 0 20px 8px rgba(123,94,167,0.8), 0 0 50px 16px rgba(123,94,167,0.4);
+    }
+
+    .star-node.active .star-glow {
+      background: radial-gradient(circle, #fff 0%, #c8b8e8 30%, #7b5ea7 60%, transparent 80%);
+      box-shadow: 0 0 24px 10px rgba(200,184,232,0.9), 0 0 60px 20px rgba(123,94,167,0.5);
+    }
+
+    @keyframes pulse {
+      0%   { opacity: 0.7; transform: scale(0.9); }
+      100% { opacity: 1;   transform: scale(1.1); }
+    }
+
+    .star-name {
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #8a7aaa;
+      line-height: 1.3;
+      transition: color 0.3s ease;
+    }
+
+    .star-node:hover .star-name,
+    .star-node.active .star-name { color: #c8b8e8; }
+
+    /* ── Bio panel ── */
+    .bio-panel {
+      position: fixed;
+      top: 0;
+      right: -420px;
+      width: 400px;
+      max-width: 90vw;
+      height: 100vh;
+      background: linear-gradient(180deg, #1a1228 0%, #12101a 100%);
+      border-left: 1px solid #3d2d5a;
+      z-index: 1000;
+      overflow-y: auto;
+      transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: -10px 0 40px rgba(0,0,0,0.5);
+    }
+
+    .bio-panel.open { right: 0; }
+
+    .bio-panel-inner {
+      padding: 32px 28px 48px;
+    }
+
+    .bio-close {
+      position: sticky;
+      top: 0;
+      display: flex;
+      justify-content: flex-end;
+      padding: 16px 20px;
+      background: linear-gradient(180deg, #1a1228, transparent);
+      z-index: 1;
+    }
+
+    .bio-close button {
+      background: none;
       border: 1px solid #3d2d5a;
+      color: #8a7aaa;
+      width: 36px;
+      height: 36px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      border-radius: 50%;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    .content-col p a { color: #a08ad0; }
-
-    /* Contributors */
-    .contributors-section {
-      margin-top: 48px;
+    .bio-close button:hover {
+      color: #c8b8e8;
+      border-color: #7b5ea7;
     }
 
-    .contributor-card {
-      display: grid;
-      grid-template-columns: 140px 1fr;
-      gap: 24px;
-      margin-bottom: 36px;
-      padding-bottom: 36px;
-      border-bottom: 1px solid #2d2440;
-    }
-
-    .contributor-card:last-child { border-bottom: none; }
-
-    .contributor-card img {
-      width: 140px;
-      height: 140px;
+    .bio-photo {
+      width: 100%;
+      max-height: 300px;
       object-fit: cover;
       object-position: top;
       display: block;
+      margin-bottom: 24px;
       filter: grayscale(20%);
     }
 
-    .contributor-info .contrib-name {
+    .bio-name {
       font-family: 'Playfair Display', Georgia, serif;
-      font-size: 1.1rem;
+      font-size: 1.3rem;
       font-weight: 600;
       color: #c8b8e8;
       display: block;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
 
-    .contrib-role {
+    .bio-issue {
       font-family: 'Raleway', sans-serif;
-      font-size: 0.72rem;
-      letter-spacing: 0.12em;
+      font-size: 0.62rem;
+      letter-spacing: 0.15em;
       text-transform: uppercase;
       color: #5a4080;
       display: block;
-      margin-bottom: 8px;
+      margin-bottom: 20px;
     }
 
-    .contributor-info .contrib-bio {
+    .bio-text {
       font-family: 'EB Garamond', Georgia, serif;
       font-size: 0.95rem;
       color: #8a7aaa;
-      line-height: 1.65;
+      line-height: 1.7;
+    }
+
+    .bio-text em { color: #a08ad0; }
+
+    /* ── Overlay ── */
+    .bio-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(10,9,16,0.6);
+      z-index: 999;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+    }
+
+    .bio-overlay.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* ── Hint ── */
+    .constellation-hint {
+      text-align: center;
+      margin-top: 48px;
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #3d2d5a;
+      animation: fadeHint 4s ease-in-out infinite alternate;
+    }
+
+    @keyframes fadeHint {
+      0%   { opacity: 0.4; }
+      100% { opacity: 0.8; }
+    }
+
+    /* ── Divider ── */
+    .cluster-divider {
+      text-align: center;
+      margin: 60px 0;
+      color: #3d2d5a;
+      font-size: 0.7rem;
+      letter-spacing: 0.4em;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      .star-field { gap: 20px 24px; }
+      .star-node  { width: 68px; }
+      .star-glow  { width: 14px; height: 14px; }
+      .star-name  { font-size: 0.52rem; }
+      .bio-panel  { width: 100vw; max-width: 100vw; right: -100vw; }
     }
   </style>
 </head>
@@ -139,147 +329,122 @@
       <h2>Contributors</h2>
     </div>
 
-    <p class="year-heading">07.2010</p>
+    <div class="cosmos">
 
-    <div class="contributors-section">
+      <!-- ═══ Cluster 1: 07.2010 ═══ -->
+      <div class="constellation">
+        <div class="cluster-label">07 . 2010</div>
+        <div class="star-field">
 
-      <div class="contributor-card">
-        <img src="images/480_live_on_monitor_video_still09_1_.JPG" alt="Cinzia Cremona">
-        <div class="contributor-info">
-          <span class="contrib-name">Cinzia Cremona</span>
-          <p class="contrib-bio">Cinzia Cremona is an artist and researcher whose intimate videoperformances focus on relationships, communication and interaction, forming an original body of work that extends into collaborative, participatory and networked practices. For the past four years, Cinzia Cremona has also been co-curating the annual moving image event Visions in the Nunnery at the Nunnery Gallery, London, as well as organizing events, discussions and forums, and publishing reviews and essays.</p>
+          <div class="star-node" style="--pulse:3.2s" data-contributor="cremona">
+            <div class="star-glow"></div>
+            <span class="star-name">Cinzia Cremona</span>
+          </div>
+
+          <div class="star-node" style="--pulse:2.8s" data-contributor="fan">
+            <div class="star-glow"></div>
+            <span class="star-name">Iris Fan Xing</span>
+          </div>
+
+          <div class="star-node" style="--pulse:3.5s" data-contributor="frank">
+            <div class="star-glow"></div>
+            <span class="star-name">Diane Frank</span>
+          </div>
+
+          <div class="star-node" style="--pulse:2.6s" data-contributor="gander">
+            <div class="star-glow"></div>
+            <span class="star-name">Forrest Gander</span>
+          </div>
+
+          <div class="star-node" style="--pulse:3.8s" data-contributor="habib">
+            <div class="star-glow"></div>
+            <span class="star-name">Samar Habib</span>
+          </div>
+
+          <div class="star-node" style="--pulse:3.0s" data-contributor="kelen">
+            <div class="star-glow"></div>
+            <span class="star-name">Kit Kelen</span>
+          </div>
+
+          <div class="star-node" style="--pulse:2.4s" data-contributor="koukoutsis">
+            <div class="star-glow"></div>
+            <span class="star-name">Helen Koukoutsis</span>
+          </div>
+
+          <div class="star-node" style="--pulse:3.3s" data-contributor="ksel">
+            <div class="star-glow"></div>
+            <span class="star-name">Dominika Ksel</span>
+          </div>
+
+          <div class="star-node" style="--pulse:2.9s" data-contributor="lorber">
+            <div class="star-glow"></div>
+            <span class="star-name">Brendan Lorber</span>
+          </div>
+
+          <div class="star-node" style="--pulse:3.6s" data-contributor="pucciani">
+            <div class="star-glow"></div>
+            <span class="star-name">Donna Pucciani</span>
+          </div>
+
+          <div class="star-node" style="--pulse:2.7s" data-contributor="tata">
+            <div class="star-glow"></div>
+            <span class="star-name">Michael Angelo Tata</span>
+          </div>
+
+          <div class="star-node" style="--pulse:3.1s" data-contributor="wilson">
+            <div class="star-glow"></div>
+            <span class="star-name">Ronaldo V. Wilson</span>
+          </div>
+
+          <div class="star-node" style="--pulse:3.4s" data-contributor="xavier">
+            <div class="star-glow"></div>
+            <span class="star-name">Emanuel Xavier</span>
+          </div>
+
         </div>
       </div>
 
-      <div class="contributor-card">
-        <img src="images/369_Iris_Fan.jpg" alt="Iris Fan">
-        <div class="contributor-info">
-          <span class="contrib-name">Iris Fan Xing</span>
-          <p class="contrib-bio">Iris Fan Xing is a postgraduate student in the English department at the University of Macau. Fan is also a poetry translator who has translated the works of women poets from the Tang Dynasty, and contemporary Australian poetry (especially the works of Aboriginal women poets).</p>
+      <div class="cluster-divider">· · · · ·</div>
+
+      <!-- ═══ Cluster 2: 02.2011 ═══ -->
+      <div class="constellation">
+        <div class="cluster-label">02 . 2011</div>
+        <div class="star-field">
+
+          <div class="star-node" style="--pulse:2.5s" data-contributor="jeffreys">
+            <div class="star-glow"></div>
+            <span class="star-name">Joe E. Jeffreys</span>
+          </div>
+
+          <div class="star-node" style="--pulse:3.7s" data-contributor="lang">
+            <div class="star-glow"></div>
+            <span class="star-name">Dana Lang</span>
+          </div>
+
+          <div class="star-node" style="--pulse:2.3s" data-contributor="wood">
+            <div class="star-glow"></div>
+            <span class="star-name">Rose Wood</span>
+          </div>
+
         </div>
       </div>
 
-      <div class="contributor-card">
-        <img src="images/360_dianefrank.jpg" alt="Diane Frank">
-        <div class="contributor-info">
-          <span class="contrib-name">Diane Frank</span>
-          <p class="contrib-bio">Diane Frank is an award-winning poet and author of five books of poems, including <em>Entering the Word Temple</em> and <em>The Winter Life of Shooting Stars</em>. Her friends describe her as a harem of seven women in one very small body. She lives in San Francisco where she dances, plays cello, and creates her life as an art form. Diane teaches at San Francisco State University, leads workshops for young writers as a Poet in the School, and directs the Blue Light Press On-line Poetry Workshop. She is also a documentary scriptwriter with expertise in Eastern and sacred art. <em>Blackberries in the Dream House</em>, her first novel, won the Chelson Award for Fiction and was nominated for the Pulitzer Prize.</p>
-        </div>
-      </div>
-
-      <div class="contributor-card">
-        <img src="images/480_forrestpound.jpg" alt="Forrest Gander">
-        <div class="contributor-info">
-          <span class="contrib-name">Forrest Gander</span>
-          <p class="contrib-bio">Forrest Gander's new books include <em>Core Samples from the World</em> (New Directions, 2011), <em>Watchword</em>, a translation of the Villaurrutia Award-winning collection by Pura Lopez Colome (Wesleyan, 2011), and a translation with Kyoko Yoshida of the selected poems of Kiwao Nomura, <em>Spectacle &amp; Pigsty</em> (OmniDawn, 2011).</p>
-        </div>
-      </div>
-
-      <div class="contributor-card">
-        <img src="images/360_DSC00828.JPG" alt="Samar Habib">
-        <div class="contributor-info">
-          <span class="contrib-name">Samar Habib</span>
-          <p class="contrib-bio">Samar Habib is the author of the novel <em>A Tree Like Rain</em> and the chapbook <em>Islands in Space</em>. She is also the author and editor of several works of non-fiction, including <em>Female Homosexuality in the Middle East</em>, and the two-volume collection <em>Islam &amp; Homosexuality</em>. She is editor-in-chief of <em>Nebula</em> and publisher of <em>African Nebula</em> and <em>nebu[lab]</em>.</p>
-        </div>
-      </div>
-
-      <div class="contributor-card">
-        <img src="images/360_Kelenphoto.jpg" alt="Kit Kelen">
-        <div class="contributor-info">
-          <span class="contrib-name">Kit Kelen</span>
-          <p class="contrib-bio">Christopher (Kit) Kelen's most recent volumes of poetry are <em>God Preserve Me from Those Who Want What's Best for Me</em>, published in 2009 by Picaro Press (N.S.W, Australia) and <em>In Conversation with the River</em>, published in 2010 by VAC (Chicago, USA). For the last ten years Kelen has taught Literature and Creative Writing at the University of Macau in south China.</p>
-        </div>
-      </div>
-
-      <div class="contributor-card">
-        <img src="images/219_Untitled.jpg" alt="Helen Koukoutsis">
-        <div class="contributor-info">
-          <span class="contrib-name">Helen Koukoutsis</span>
-          <p class="contrib-bio">Helen Koukoutsis is a Critical and Cultural Studies scholar specialising in the areas of 19th century American poetry, in particular Emily Dickinson's verse, medieval mysticism/theology and Zen Buddhist philosophy. For the past 4 years, she has been teaching various literature-based subjects.</p>
-        </div>
-      </div>
-
-      <div class="contributor-card">
-        <img src="images/480_kselphoto.jpg" alt="Dominika Ksel">
-        <div class="contributor-info">
-          <span class="contrib-name">Dominika Ksel</span>
-          <p class="contrib-bio">Dominika Ksel came from Poland in the early 80s and ended up in Gainesville as a result of communist dictatorship. She headed to Brooklyn as a teen in hopes of finding creative resolutions to the imbalances of the world. She completed her undergrad studies in documentary and video art and pursued an MFA in video, performance and installation at Hunter College. Her work deals with socio-political elements, manifesting possibilities for the future and investigating dimensions beyond the physics of reality through artistic experiments.</p>
-        </div>
-      </div>
-
-      <div class="contributor-card">
-        <img src="images/480_Lorberphoto.jpg" alt="Brendan Lorber">
-        <div class="contributor-info">
-          <span class="contrib-name">Brendan Lorber</span>
-          <p class="contrib-bio">You know what Brendan Lorber's bio sounds like? It sounds like a man trying to convince the world of something he doesn't quite believe himself. What's left of him is a leaf that the wind blows from one gutter to another. He also edits <em>LUNGFULL!</em>, a journal of terrible mistakes, whose lousy personality can be briefly grieved over at: www.lungfull.org.</p>
-        </div>
-      </div>
-
-      <div class="contributor-card">
-        <img src="images/416_DonPhoto_1_.jpg" alt="Donna Pucciani">
-        <div class="contributor-info">
-          <span class="contrib-name">Donna Pucciani</span>
-          <p class="contrib-bio">Donna Pucciani has published several hundred poems in the U.S., Europe, Australia and Asia, in such diverse journals as <em>International Poetry Review</em>, <em>Spoon River Poetry Review</em>, <em>The Pedestal</em>, <em>Journal of the American Medical Association</em>, and <em>The Christian Century</em>. Her books of poetry include <em>The Other Side of Thunder</em>, <em>Jumping off the Train</em>, and <em>Chasing the Saints</em>. She has been nominated three times for the Pushcart Prize and currently serves as Vice-President of the Poets Club of Chicago.</p>
-        </div>
-      </div>
-
-      <div class="contributor-card">
-        <img src="images/480_Tataphoto.jpg" alt="Michael Angelo Tata">
-        <div class="contributor-info">
-          <span class="contrib-name">Michael Angelo Tata</span>
-          <p class="contrib-bio">Michael Angelo Tata's poetry has most recently appeared in <em>Gertrude</em>, <em>Frigg</em> and <em>Ugly Couch</em>. He has contributed work on Daniel Paul Schreber to the collection <em>Modernity and Neurology</em> (Palgrave Macmillan) and on Jacques Derrida to the journal <em>Parallax</em> (Routledge). His <em>Andy Warhol: Sublime Superficiality</em> arrives from Intertheory Press in 2010.</p>
-        </div>
-      </div>
-
-      <div class="contributor-card">
-        <img src="images/360_IMG_0177_1_.jpg" alt="Ronaldo V. Wilson">
-        <div class="contributor-info">
-          <span class="contrib-name">Ronaldo V. Wilson</span>
-          <p class="contrib-bio">Ronaldo V. Wilson is the author of <em>Narrative of the Life of the Brown Boy and the White Man</em>, winner of the 2007 Cave Canem Poetry Prize, and <em>Poems of the Black Object</em>, winner of the 2010 Thom Gunn Award. A co-founder of the Black Took Collective, he teaches creative writing, literature, and African American poetics at Mount Holyoke College.</p>
-        </div>
-      </div>
-
-      <div class="contributor-card">
-        <img src="images/320_Emanuel_Xavier_by_Bobby_Miller_2-_b_w_1_.jpg" alt="Emanuel Xavier">
-        <div class="contributor-info">
-          <span class="contrib-name">Emanuel Xavier</span>
-          <p class="contrib-bio">Emanuel Xavier is author of the novel <em>Christ Like</em> and editor of <em>Bullets &amp; Butterflies</em> and <em>Mariposas: A Modern Anthology of Queer Latino Poetry</em>. An award-winning poet, he has been featured on Russell Simmons presents Def Poetry, The New York Times, and CNN. He created the Glam Slam, first held at The Nuyorican Poets Cafe. His spoken word/music collaboration album <em>Legendary</em> was recently released on iTunes and his new poetry collection <em>If Jesus Were Gay &amp; Other Poems</em> will be published in April 2011. Of Puerto Rican and Ecuadorian descent, he lives in Brooklyn, New York.</p>
-        </div>
-      </div>
+      <p class="constellation-hint">select a star to reveal its contributor</p>
 
     </div>
-
-    <p class="year-heading" style="margin-top:48px;">02.2011</p>
-
-    <div class="contributors-section">
-
-      <div class="contributor-card">
-        <img src="images/423_JEJbyVesPitts.jpg" alt="Joe E. Jeffreys">
-        <div class="contributor-info">
-          <span class="contrib-name">Joe E. Jeffreys</span>
-          <p class="contrib-bio">Joe E. Jeffreys is a drag historian. He teaches Theatre Studies at New York University's Tisch School of the Arts Drama Department and has also taught at Stony Brook University, Purchase and Lehman College. He has published in encyclopedias, journals, including <em>Women in Performance</em> and <em>Theatre History Studies</em>, and in the popular press, from Time Out New York and The Village Voice to Out and The Advocate. He produces the series Drag Show Video Verité and his video shorts have been screened internationally. Photo taken by Ves Pitts.</p>
-        </div>
-      </div>
-
-      <div class="contributor-card">
-        <img src="images/480_Photo_4.jpg" alt="Dana Lang">
-        <div class="contributor-info">
-          <span class="contrib-name">Dana Lang</span>
-          <p class="contrib-bio">Dana Lang is a singer/songwriter, poet and playwright who has written, directed and performed her work in New York City, where she lives and works as a freelance writer and editor. Dana earned her MFA in Playwriting at Brooklyn College, where she studied with master of experimental theater Mac Wellman, who greatly inspired the idea behind "Death Caps and the Jersey Devil." While her play somewhat departs from his evil prescription, it served as fertile ground for her to continue exploring and merging multiple narratives, characters and themes, with the resulting work still being largely Mac's fault.</p>
-        </div>
-      </div>
-
-      <div class="contributor-card">
-        <img src="images/183_Roseglamourshot.jpg" alt="Rose Wood">
-        <div class="contributor-info">
-          <span class="contrib-name">Rose Wood</span>
-          <p class="contrib-bio">Rose Wood is a performance artist who honed her craft in countless Downtown New York City clubs, and has since performed around the world. Her gender-bending acts have earned her much critical acclaim, including the "Most Exotic Moves" award at the 2006 Exotic World Competition and NY Press' "Best of New York" in 2008. She has also appeared in numerous films and has been profiled in the award-winning documentaries "What's in a Name" and "Shape of the Shapeless." She currently divides her time between New York and London.</p>
-        </div>
-      </div>
-
-    </div>
-
   </main>
+
+  <!-- Bio slide-out panel -->
+  <div class="bio-overlay" id="bioOverlay"></div>
+  <div class="bio-panel" id="bioPanel">
+    <div class="bio-close"><button id="bioClose" aria-label="Close">&times;</button></div>
+    <div class="bio-panel-inner">
+      <img class="bio-photo" id="bioPhoto" src="" alt="">
+      <span class="bio-name" id="bioName"></span>
+      <span class="bio-issue" id="bioIssue"></span>
+      <p class="bio-text" id="bioText"></p>
+    </div>
+  </div>
 
   <footer>
     <span class="footer-title">NEBULA: A Journal of Multidisciplinary Scholarship</span>
@@ -293,6 +458,150 @@
     </nav>
     <p class="footer-copy">&copy; Nebula and its contributors. All rights reserved.</p>
   </footer>
+
+  <script>
+    var contributors = {
+      cremona: {
+        name: "Cinzia Cremona",
+        issue: "07.2010",
+        photo: "images/480_live_on_monitor_video_still09_1_.JPG",
+        bio: "Cinzia Cremona is an artist and researcher whose intimate videoperformances focus on relationships, communication and interaction, forming an original body of work that extends into collaborative, participatory and networked practices. For the past four years, Cinzia Cremona has also been co-curating the annual moving image event Visions in the Nunnery at the Nunnery Gallery, London, as well as organizing events, discussions and forums, and publishing reviews and essays."
+      },
+      fan: {
+        name: "Iris Fan Xing",
+        issue: "07.2010",
+        photo: "images/369_Iris_Fan.jpg",
+        bio: "Iris Fan Xing is a postgraduate student in the English department at the University of Macau. Fan is also a poetry translator who has translated the works of women poets from the Tang Dynasty, and contemporary Australian poetry (especially the works of Aboriginal women poets)."
+      },
+      frank: {
+        name: "Diane Frank",
+        issue: "07.2010",
+        photo: "images/360_dianefrank.jpg",
+        bio: "Diane Frank is an award-winning poet and author of five books of poems, including <em>Entering the Word Temple</em> and <em>The Winter Life of Shooting Stars</em>. Her friends describe her as a harem of seven women in one very small body. She lives in San Francisco where she dances, plays cello, and creates her life as an art form. Diane teaches at San Francisco State University, leads workshops for young writers as a Poet in the School, and directs the Blue Light Press On-line Poetry Workshop. She is also a documentary scriptwriter with expertise in Eastern and sacred art. <em>Blackberries in the Dream House</em>, her first novel, won the Chelson Award for Fiction and was nominated for the Pulitzer Prize."
+      },
+      gander: {
+        name: "Forrest Gander",
+        issue: "07.2010",
+        photo: "images/480_forrestpound.jpg",
+        bio: "Forrest Gander\u2019s new books include <em>Core Samples from the World</em> (New Directions, 2011), <em>Watchword</em>, a translation of the Villaurrutia Award-winning collection by Pura Lopez Colome (Wesleyan, 2011), and a translation with Kyoko Yoshida of the selected poems of Kiwao Nomura, <em>Spectacle &amp; Pigsty</em> (OmniDawn, 2011)."
+      },
+      habib: {
+        name: "Samar Habib",
+        issue: "07.2010",
+        photo: "images/360_DSC00828.JPG",
+        bio: "Samar Habib is the author of the novel <em>A Tree Like Rain</em> and the chapbook <em>Islands in Space</em>. She is also the author and editor of several works of non-fiction, including <em>Female Homosexuality in the Middle East</em>, and the two-volume collection <em>Islam &amp; Homosexuality</em>. She is editor-in-chief of <em>Nebula</em> and publisher of <em>African Nebula</em> and <em>nebu[lab]</em>."
+      },
+      kelen: {
+        name: "Kit Kelen",
+        issue: "07.2010",
+        photo: "images/360_Kelenphoto.jpg",
+        bio: "Christopher (Kit) Kelen\u2019s most recent volumes of poetry are <em>God Preserve Me from Those Who Want What\u2019s Best for Me</em>, published in 2009 by Picaro Press (N.S.W, Australia) and <em>In Conversation with the River</em>, published in 2010 by VAC (Chicago, USA). For the last ten years Kelen has taught Literature and Creative Writing at the University of Macau in south China."
+      },
+      koukoutsis: {
+        name: "Helen Koukoutsis",
+        issue: "07.2010",
+        photo: "images/219_Untitled.jpg",
+        bio: "Helen Koukoutsis is a Critical and Cultural Studies scholar specialising in the areas of 19th century American poetry, in particular Emily Dickinson\u2019s verse, medieval mysticism/theology and Zen Buddhist philosophy. For the past 4 years, she has been teaching various literature-based subjects."
+      },
+      ksel: {
+        name: "Dominika Ksel",
+        issue: "07.2010",
+        photo: "images/480_kselphoto.jpg",
+        bio: "Dominika Ksel came from Poland in the early 80s and ended up in Gainesville as a result of communist dictatorship. She headed to Brooklyn as a teen in hopes of finding creative resolutions to the imbalances of the world. She completed her undergrad studies in documentary and video art and pursued an MFA in video, performance and installation at Hunter College. Her work deals with socio-political elements, manifesting possibilities for the future and investigating dimensions beyond the physics of reality through artistic experiments."
+      },
+      lorber: {
+        name: "Brendan Lorber",
+        issue: "07.2010",
+        photo: "images/480_Lorberphoto.jpg",
+        bio: "You know what Brendan Lorber\u2019s bio sounds like? It sounds like a man trying to convince the world of something he doesn\u2019t quite believe himself. What\u2019s left of him is a leaf that the wind blows from one gutter to another. He also edits <em>LUNGFULL!</em>, a journal of terrible mistakes, whose lousy personality can be briefly grieved over at: www.lungfull.org."
+      },
+      pucciani: {
+        name: "Donna Pucciani",
+        issue: "07.2010",
+        photo: "images/416_DonPhoto_1_.jpg",
+        bio: "Donna Pucciani has published several hundred poems in the U.S., Europe, Australia and Asia, in such diverse journals as <em>International Poetry Review</em>, <em>Spoon River Poetry Review</em>, <em>The Pedestal</em>, <em>Journal of the American Medical Association</em>, and <em>The Christian Century</em>. Her books of poetry include <em>The Other Side of Thunder</em>, <em>Jumping off the Train</em>, and <em>Chasing the Saints</em>. She has been nominated three times for the Pushcart Prize and currently serves as Vice-President of the Poets Club of Chicago."
+      },
+      tata: {
+        name: "Michael Angelo Tata",
+        issue: "07.2010",
+        photo: "images/480_Tataphoto.jpg",
+        bio: "Michael Angelo Tata\u2019s poetry has most recently appeared in <em>Gertrude</em>, <em>Frigg</em> and <em>Ugly Couch</em>. He has contributed work on Daniel Paul Schreber to the collection <em>Modernity and Neurology</em> (Palgrave Macmillan) and on Jacques Derrida to the journal <em>Parallax</em> (Routledge). His <em>Andy Warhol: Sublime Superficiality</em> arrives from Intertheory Press in 2010."
+      },
+      wilson: {
+        name: "Ronaldo V. Wilson",
+        issue: "07.2010",
+        photo: "images/360_IMG_0177_1_.jpg",
+        bio: "Ronaldo V. Wilson is the author of <em>Narrative of the Life of the Brown Boy and the White Man</em>, winner of the 2007 Cave Canem Poetry Prize, and <em>Poems of the Black Object</em>, winner of the 2010 Thom Gunn Award. A co-founder of the Black Took Collective, he teaches creative writing, literature, and African American poetics at Mount Holyoke College."
+      },
+      xavier: {
+        name: "Emanuel Xavier",
+        issue: "07.2010",
+        photo: "images/320_Emanuel_Xavier_by_Bobby_Miller_2-_b_w_1_.jpg",
+        bio: "Emanuel Xavier is author of the novel <em>Christ Like</em> and editor of <em>Bullets &amp; Butterflies</em> and <em>Mariposas: A Modern Anthology of Queer Latino Poetry</em>. An award-winning poet, he has been featured on Russell Simmons presents Def Poetry, The New York Times, and CNN. He created the Glam Slam, first held at The Nuyorican Poets Cafe. His spoken word/music collaboration album <em>Legendary</em> was recently released on iTunes and his new poetry collection <em>If Jesus Were Gay &amp; Other Poems</em> will be published in April 2011. Of Puerto Rican and Ecuadorian descent, he lives in Brooklyn, New York."
+      },
+      jeffreys: {
+        name: "Joe E. Jeffreys",
+        issue: "02.2011",
+        photo: "images/423_JEJbyVesPitts.jpg",
+        bio: "Joe E. Jeffreys is a drag historian. He teaches Theatre Studies at New York University\u2019s Tisch School of the Arts Drama Department and has also taught at Stony Brook University, Purchase and Lehman College. He has published in encyclopedias, journals, including <em>Women in Performance</em> and <em>Theatre History Studies</em>, and in the popular press, from Time Out New York and The Village Voice to Out and The Advocate. He produces the series Drag Show Video Verit\u00e9 and his video shorts have been screened internationally. Photo taken by Ves Pitts."
+      },
+      lang: {
+        name: "Dana Lang",
+        issue: "02.2011",
+        photo: "images/480_Photo_4.jpg",
+        bio: "Dana Lang is a singer/songwriter, poet and playwright who has written, directed and performed her work in New York City, where she lives and works as a freelance writer and editor. Dana earned her MFA in Playwriting at Brooklyn College, where she studied with master of experimental theater Mac Wellman, who greatly inspired the idea behind \u201cDeath Caps and the Jersey Devil.\u201d While her play somewhat departs from his evil prescription, it served as fertile ground for her to continue exploring and merging multiple narratives, characters and themes, with the resulting work still being largely Mac\u2019s fault."
+      },
+      wood: {
+        name: "Rose Wood",
+        issue: "02.2011",
+        photo: "images/183_Roseglamourshot.jpg",
+        bio: "Rose Wood is a performance artist who honed her craft in countless Downtown New York City clubs, and has since performed around the world. Her gender-bending acts have earned her much critical acclaim, including the \u201cMost Exotic Moves\u201d award at the 2006 Exotic World Competition and NY Press\u2019 \u201cBest of New York\u201d in 2008. She has also appeared in numerous films and has been profiled in the award-winning documentaries \u201cWhat\u2019s in a Name\u201d and \u201cShape of the Shapeless.\u201d She currently divides her time between New York and London."
+      }
+    };
+
+    var panel = document.getElementById('bioPanel');
+    var overlay = document.getElementById('bioOverlay');
+    var activeNode = null;
+
+    function openBio(key) {
+      var c = contributors[key];
+      if (!c) return;
+
+      document.getElementById('bioPhoto').src = c.photo;
+      document.getElementById('bioPhoto').alt = c.name;
+      document.getElementById('bioName').textContent = c.name;
+      document.getElementById('bioIssue').textContent = c.issue;
+      document.getElementById('bioText').innerHTML = c.bio;
+
+      if (activeNode) activeNode.classList.remove('active');
+      activeNode = document.querySelector('[data-contributor="' + key + '"]');
+      if (activeNode) activeNode.classList.add('active');
+
+      panel.classList.add('open');
+      overlay.classList.add('open');
+    }
+
+    function closeBio() {
+      panel.classList.remove('open');
+      overlay.classList.remove('open');
+      if (activeNode) {
+        activeNode.classList.remove('active');
+        activeNode = null;
+      }
+    }
+
+    document.querySelectorAll('.star-node').forEach(function(node) {
+      node.addEventListener('click', function() {
+        openBio(this.dataset.contributor);
+      });
+    });
+
+    document.getElementById('bioClose').addEventListener('click', closeBio);
+    overlay.addEventListener('click', closeBio);
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeBio();
+    });
+  </script>
 
 </body>
 </html>
