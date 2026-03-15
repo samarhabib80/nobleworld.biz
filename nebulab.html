@@ -322,6 +322,245 @@
       line-height: 1.65;
     }
 
+    /* ── Team Constellation ── */
+    .team-cosmos {
+      position: relative;
+      min-height: 400px;
+      padding: 60px 0 80px;
+    }
+
+    .team-cosmos::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(1px 1px at 10% 15%, rgba(200,184,232,0.7), transparent),
+        radial-gradient(1px 1px at 25% 45%, rgba(200,184,232,0.5), transparent),
+        radial-gradient(1px 1px at 40% 8%, rgba(200,184,232,0.4), transparent),
+        radial-gradient(1px 1px at 55% 72%, rgba(200,184,232,0.6), transparent),
+        radial-gradient(1px 1px at 70% 30%, rgba(200,184,232,0.3), transparent),
+        radial-gradient(1px 1px at 85% 60%, rgba(200,184,232,0.5), transparent),
+        radial-gradient(1px 1px at 92% 18%, rgba(200,184,232,0.4), transparent),
+        radial-gradient(1px 1px at 15% 80%, rgba(200,184,232,0.3), transparent),
+        radial-gradient(1px 1px at 33% 55%, rgba(200,184,232,0.4), transparent),
+        radial-gradient(1px 1px at 60% 90%, rgba(200,184,232,0.5), transparent),
+        radial-gradient(1px 1px at 78% 48%, rgba(200,184,232,0.3), transparent),
+        radial-gradient(1px 1px at 5% 35%, rgba(200,184,232,0.6), transparent),
+        radial-gradient(1px 1px at 48% 25%, rgba(200,184,232,0.4), transparent),
+        radial-gradient(1.5px 1.5px at 20% 65%, rgba(160,138,208,0.8), transparent),
+        radial-gradient(1.5px 1.5px at 65% 12%, rgba(160,138,208,0.6), transparent),
+        radial-gradient(1.5px 1.5px at 88% 85%, rgba(160,138,208,0.5), transparent);
+      pointer-events: none;
+      animation: teamTwinkle 8s ease-in-out infinite alternate;
+    }
+
+    @keyframes teamTwinkle {
+      0%   { opacity: 0.6; }
+      50%  { opacity: 1; }
+      100% { opacity: 0.7; }
+    }
+
+    .team-constellation {
+      position: relative;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .team-cluster-label {
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: #5a4080;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .team-star-field {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 28px 36px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .team-star-node {
+      position: relative;
+      width: 80px;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .team-star-node:hover { transform: scale(1.12); }
+
+    .team-star-glow {
+      width: 18px;
+      height: 18px;
+      margin: 0 auto 10px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #c8b8e8 0%, #7b5ea7 40%, transparent 70%);
+      box-shadow: 0 0 12px 4px rgba(123,94,167,0.5), 0 0 30px 8px rgba(123,94,167,0.2);
+      animation: teamPulse var(--pulse, 3s) ease-in-out infinite alternate;
+      transition: box-shadow 0.3s ease;
+    }
+
+    .team-star-node:hover .team-star-glow {
+      box-shadow: 0 0 20px 8px rgba(123,94,167,0.8), 0 0 50px 16px rgba(123,94,167,0.4);
+    }
+
+    .team-star-node.active .team-star-glow {
+      background: radial-gradient(circle, #fff 0%, #c8b8e8 30%, #7b5ea7 60%, transparent 80%);
+      box-shadow: 0 0 24px 10px rgba(200,184,232,0.9), 0 0 60px 20px rgba(123,94,167,0.5);
+    }
+
+    @keyframes teamPulse {
+      0%   { opacity: 0.7; transform: scale(0.9); }
+      100% { opacity: 1;   transform: scale(1.1); }
+    }
+
+    .team-star-name {
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #8a7aaa;
+      line-height: 1.3;
+      transition: color 0.3s ease;
+    }
+
+    .team-star-node:hover .team-star-name,
+    .team-star-node.active .team-star-name { color: #c8b8e8; }
+
+    /* ── Team Bio panel ── */
+    .team-bio-panel {
+      position: fixed;
+      top: 0;
+      right: -420px;
+      width: 400px;
+      max-width: 90vw;
+      height: 100vh;
+      background: linear-gradient(180deg, #1a1228 0%, #12101a 100%);
+      border-left: 1px solid #3d2d5a;
+      z-index: 1000;
+      overflow-y: auto;
+      transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: -10px 0 40px rgba(0,0,0,0.5);
+    }
+
+    .team-bio-panel.open { right: 0; }
+
+    .team-bio-inner { padding: 32px 28px 48px; }
+
+    .team-bio-close {
+      position: sticky;
+      top: 0;
+      display: flex;
+      justify-content: flex-end;
+      padding: 16px 20px;
+      background: linear-gradient(180deg, #1a1228, transparent);
+      z-index: 1;
+    }
+
+    .team-bio-close button {
+      background: none;
+      border: 1px solid #3d2d5a;
+      color: #8a7aaa;
+      width: 36px;
+      height: 36px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      border-radius: 50%;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .team-bio-close button:hover {
+      color: #c8b8e8;
+      border-color: #7b5ea7;
+    }
+
+    .team-bio-photo {
+      width: 100%;
+      max-height: 300px;
+      object-fit: cover;
+      object-position: top;
+      display: block;
+      margin-bottom: 24px;
+      filter: grayscale(20%);
+    }
+
+    .team-bio-name {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #c8b8e8;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .team-bio-role {
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.62rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #5a4080;
+      display: block;
+      margin-bottom: 20px;
+    }
+
+    .team-bio-text {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 0.95rem;
+      color: #8a7aaa;
+      line-height: 1.7;
+    }
+
+    .team-bio-text em { color: #a08ad0; }
+
+    .team-bio-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(10,9,16,0.6);
+      z-index: 999;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+    }
+
+    .team-bio-overlay.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .team-constellation-hint {
+      text-align: center;
+      margin-top: 48px;
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #3d2d5a;
+      animation: teamFadeHint 4s ease-in-out infinite alternate;
+    }
+
+    @keyframes teamFadeHint {
+      0%   { opacity: 0.4; }
+      100% { opacity: 0.8; }
+    }
+
+    @media (max-width: 600px) {
+      .team-star-field { gap: 20px 24px; }
+      .team-star-node  { width: 68px; }
+      .team-star-glow  { width: 14px; height: 14px; }
+      .team-star-name  { font-size: 0.52rem; }
+      .team-bio-panel  { width: 100vw; max-width: 100vw; right: -100vw; }
+    }
+
     /* ── Exhibit Slideshow ── */
     .exhibit {
       margin-bottom: 56px;
@@ -853,72 +1092,65 @@
     <div class="ornament">— ✦ —</div>
     <h2>The nebu[lab] Team</h2>
 
-    <div class="contributors-section" style="margin-top:24px;">
-      <div class="contributor-card">
-        <img src="images/264_Mtata.2009_1_.jpg" alt="Dr. Michael Angelo Tata">
-        <div class="contributor-info">
-          <span class="contrib-name">Dr. Michael Angelo Tata, Ph.D.</span>
-          <span class="contrib-role">Executive Editor</span>
-          <p class="contrib-bio">Michael Angelo Tata received his M.A. in Creative Writing/Poetry from Temple University, his M.A. in Liberal Studies from the New School for Social Research, and his Ph.D. in English Literature through the CUNY Graduate Center. His poetry and criticism have appeared in the journals LinQ, NEBULA, M/C, UGLY COUCH, LIT, LUNGFULL, EYE: RHYME, KENNING, BAD SUBJECTS, FOUND OBJECT, RHIZOMES and TO THE QUICK, as well as the Critical Studies compilation <em>From Virgin Land to Disney World: Nature and Its Discontents in the USA of Yesterday and Today</em> (Editions Rodopi, 2001) and the Madonna Studies anthology <em>Madonna's Drowned Worlds: New Approaches to Her Cultural Transformations</em> (Ashgate UK, 2004). His first chapbook of poems, <em>The Multiplication of Joy Into Integers</em>, won Blue Light Press' 2003 poetry prize. His <em>Andy Warhol: Sublime Superficiality</em> arrives from Intertheory Press in 2010.</p>
+    <div class="team-cosmos">
+      <div class="team-constellation">
+        <div class="team-cluster-label">Editorial &amp; Advisory</div>
+        <div class="team-star-field">
+
+          <div class="team-star-node" style="--pulse:3.2s" data-team="tata">
+            <div class="team-star-glow"></div>
+            <span class="team-star-name">Michael Angelo Tata</span>
+          </div>
+
+          <div class="team-star-node" style="--pulse:2.8s" data-team="beirne">
+            <div class="team-star-glow"></div>
+            <span class="team-star-name">Rebecca Beirne</span>
+          </div>
+
+          <div class="team-star-node" style="--pulse:3.5s" data-team="boyle">
+            <div class="team-star-glow"></div>
+            <span class="team-star-name">David Boyle</span>
+          </div>
+
+          <div class="team-star-node" style="--pulse:2.6s" data-team="eberly">
+            <div class="team-star-glow"></div>
+            <span class="team-star-name">Clifford Eberly</span>
+          </div>
+
+          <div class="team-star-node" style="--pulse:3.8s" data-team="flaster">
+            <div class="team-star-glow"></div>
+            <span class="team-star-name">Cora Flaster</span>
+          </div>
+
+          <div class="team-star-node" style="--pulse:3.0s" data-team="olivos">
+            <div class="team-star-glow"></div>
+            <span class="team-star-name">Roman Olivos</span>
+          </div>
+
+          <div class="team-star-node" style="--pulse:2.4s" data-team="wilson">
+            <div class="team-star-glow"></div>
+            <span class="team-star-name">Ronaldo Wilson</span>
+          </div>
+
         </div>
       </div>
 
-      <div class="contributor-card">
-        <img src="images/200_n571486647_3341.jpg" alt="Dr. Rebecca Beirne">
-        <div class="contributor-info">
-          <span class="contrib-name">Dr. Rebecca Beirne, Ph.D.</span>
-          <span class="contrib-role">Advisor</span>
-          <p class="contrib-bio">Rebecca Beirne is Lecturer in Film, Media and Cultural Studies, University of Newcastle. She is the author of <em>Lesbians in Television and Text after the Millennium</em>, editor of <em>Televising Queer Women: A Reader</em> and has written numerous journal articles and book chapters discussing queer representation in popular culture.</p>
-        </div>
-      </div>
-
-      <div class="contributor-card">
-        <img src="images/480_MyPicture_10_07Boylephoto.jpg" alt="David Boyle">
-        <div class="contributor-info">
-          <span class="contrib-name">David Boyle</span>
-          <span class="contrib-role">Advisor</span>
-          <p class="contrib-bio">David Boyle is a long-time resident of Jersey City, NJ, who teaches English. He also plays the banjo for his elementary school students, who enjoy the instrument because they are too young to know any better. Unlike the main character in <em>Orphan and Amorcé</em>, he does not have to be locked in a jumpsuit as the result of a muscle-bound, overbearing mother who only wants what's best for him.</p>
-        </div>
-      </div>
-
-      <div class="contributor-card">
-        <img src="images/340_Eberlypic2.jpg" alt="Clifford Eberly">
-        <div class="contributor-info">
-          <span class="contrib-name">Clifford Eberly</span>
-          <span class="contrib-role">Advisor</span>
-          <p class="contrib-bio">Clifford Eberly graduated from the Savannah College of Art and Design in 1992 with a BFA in Fibers. In the summer of 1993 he completed the Apprenticeship Program at the Fabric Workshop in Philadelphia. He moved to New York in 1995, where he enrolled in the Empire State College Studio in the City Program and travelled with SVA to Spain for their Painting in Barcelona course. In 2003, he returned to Lancaster, PA, after living in Puerto Rico for one year. For the last 4 years, he has operated Parlor Gallery in the Cabbage Hill area of Lancaster — an experimental gallery that exists outside the footpaths of the downtown Lancaster Arts district, giving emerging, established and under-recognized artists the opportunity to push their creative limits. This fall he begins the MFA Art Program at Claremont Graduate University in California, where he will focus on a body of work based on onomastics.</p>
-        </div>
-      </div>
-
-      <div class="contributor-card">
-        <img src="images/430_29325_396217876338_604021338_4686608_3524421_n_1_.jpg" alt="Cora Flaster">
-        <div class="contributor-info">
-          <span class="contrib-name">Cora Flaster</span>
-          <span class="contrib-role">Designer / Art Director</span>
-          <p class="contrib-bio">Art Director with a passion for multimedia and design. For the past fourteen years, Cora has utilized and enhanced her skill set via her professional career and schooling. She graduated from the School of Visual Arts in 1997, and has worked as a Graphic Designer, Web Designer, and Art Director in New York and Germany. Cora started her career in print design and later expanded her repertoire by attending New York University in 2000, where she received a Multimedia Certificate. Her experience encompasses a broad range of projects in design and multimedia. In 2003, Cora started her own design company, working with clients in the fashion, entertainment and pharmaceutical industries. In 2009 she co-founded Solara Films, along with Rawle Fitz Williams.</p>
-        </div>
-      </div>
-
-      <div class="contributor-card">
-        <img src="images/129_for_M_copy_1_.jpg" alt="Roman Olivos" style="object-fit: contain; background: #18141f;">
-        <div class="contributor-info">
-          <span class="contrib-name">Roman Olivos</span>
-          <span class="contrib-role">Information Architect</span>
-          <p class="contrib-bio">Roman Olivos graduated from Columbia University with a focus on Mathematics, Science and Technology with a Master of Arts in New Media/Digital Communication and Education. He also holds a Bachelor of Arts in English Literature with a Minor in Anthropology from Baruch College, NYC. He is currently a part-time law student. Professionally, he holds an extensive background in Digital Production and has worked as Executive Producer for Publicis Groupe, Omnicom and The Interpublic Group companies. Most recently, he has formed a small boutique US-based, bi-coastal Interactive Advertising Agency, iPublishing, LLC.</p>
-        </div>
-      </div>
-
-      <div class="contributor-card">
-        <img src="images/360_IMG_0177_1_.jpg" alt="Dr. Ronaldo Wilson">
-        <div class="contributor-info">
-          <span class="contrib-name">Dr. Ronaldo Wilson, Ph.D.</span>
-          <span class="contrib-role">Advisor</span>
-          <p class="contrib-bio">Ronaldo V. Wilson is the author of <em>Narrative of the Life of the Brown Boy and the White Man</em>, winner of the 2007 Cave Canem Poetry Prize (University of Pittsburgh Press, 2008), and <em>Poems of the Black Object</em>, winner of the 2010 Thom Gunn Award (Futurepoem Books, 2009). He is a graduate of the PhD program in English at the CUNY Graduate Center, and NYU's Graduate Creative Writing Program. Wilson has won numerous fellowships including the Provincetown Fine Arts Work Center, Cave Canem, Kundiman, Djerassi, Vermont Studio Center, and Yaddo. A co-founder of the Black Took Collective, he teaches creative writing, literature, and African American poetics at Mount Holyoke College.</p>
-        </div>
-      </div>
-
+      <p class="team-constellation-hint">select a star to reveal team member</p>
     </div>
+
   </main>
+
+  <!-- Team bio slide-out panel -->
+  <div class="team-bio-overlay" id="teamBioOverlay"></div>
+  <div class="team-bio-panel" id="teamBioPanel">
+    <div class="team-bio-close"><button id="teamBioClose" aria-label="Close">&times;</button></div>
+    <div class="team-bio-inner">
+      <img class="team-bio-photo" id="teamBioPhoto" src="" alt="">
+      <span class="team-bio-name" id="teamBioName"></span>
+      <span class="team-bio-role" id="teamBioRole"></span>
+      <p class="team-bio-text" id="teamBioText"></p>
+    </div>
+  </div>
 
   <footer>
     <span class="footer-title">NEBULA: A Journal of Multidisciplinary Scholarship</span>
@@ -1015,6 +1247,97 @@ document.querySelectorAll('.exhibit').forEach(function(exhibit) {
     });
   }
 });
+
+// ── Team constellation bio panel ──
+(function() {
+  var teamMembers = {
+    tata: {
+      name: "Dr. Michael Angelo Tata, Ph.D.",
+      role: "Executive Editor",
+      photo: "images/264_Mtata.2009_1_.jpg",
+      bio: "Michael Angelo Tata received his M.A. in Creative Writing/Poetry from Temple University, his M.A. in Liberal Studies from the New School for Social Research, and his Ph.D. in English Literature through the CUNY Graduate Center. His poetry and criticism have appeared in the journals LinQ, NEBULA, M/C, UGLY COUCH, LIT, LUNGFULL, EYE: RHYME, KENNING, BAD SUBJECTS, FOUND OBJECT, RHIZOMES and TO THE QUICK, as well as the Critical Studies compilation <em>From Virgin Land to Disney World: Nature and Its Discontents in the USA of Yesterday and Today</em> (Editions Rodopi, 2001) and the Madonna Studies anthology <em>Madonna\u2019s Drowned Worlds: New Approaches to Her Cultural Transformations</em> (Ashgate UK, 2004). His first chapbook of poems, <em>The Multiplication of Joy Into Integers</em>, won Blue Light Press\u2019 2003 poetry prize. His <em>Andy Warhol: Sublime Superficiality</em> arrives from Intertheory Press in 2010."
+    },
+    beirne: {
+      name: "Dr. Rebecca Beirne, Ph.D.",
+      role: "Advisor",
+      photo: "images/200_n571486647_3341.jpg",
+      bio: "Rebecca Beirne is Lecturer in Film, Media and Cultural Studies, University of Newcastle. She is the author of <em>Lesbians in Television and Text after the Millennium</em>, editor of <em>Televising Queer Women: A Reader</em> and has written numerous journal articles and book chapters discussing queer representation in popular culture."
+    },
+    boyle: {
+      name: "David Boyle",
+      role: "Advisor",
+      photo: "images/480_MyPicture_10_07Boylephoto.jpg",
+      bio: "David Boyle is a long-time resident of Jersey City, NJ, who teaches English. He also plays the banjo for his elementary school students, who enjoy the instrument because they are too young to know any better. Unlike the main character in <em>Orphan and Amorc\u00e9</em>, he does not have to be locked in a jumpsuit as the result of a muscle-bound, overbearing mother who only wants what\u2019s best for him."
+    },
+    eberly: {
+      name: "Clifford Eberly",
+      role: "Advisor",
+      photo: "images/340_Eberlypic2.jpg",
+      bio: "Clifford Eberly graduated from the Savannah College of Art and Design in 1992 with a BFA in Fibers. In the summer of 1993 he completed the Apprenticeship Program at the Fabric Workshop in Philadelphia. He moved to New York in 1995, where he enrolled in the Empire State College Studio in the City Program and travelled with SVA to Spain for their Painting in Barcelona course. In 2003, he returned to Lancaster, PA, after living in Puerto Rico for one year. For the last 4 years, he has operated Parlor Gallery in the Cabbage Hill area of Lancaster \u2014 an experimental gallery that exists outside the footpaths of the downtown Lancaster Arts district, giving emerging, established and under-recognized artists the opportunity to push their creative limits. This fall he begins the MFA Art Program at Claremont Graduate University in California, where he will focus on a body of work based on onomastics."
+    },
+    flaster: {
+      name: "Cora Flaster",
+      role: "Designer / Art Director",
+      photo: "images/430_29325_396217876338_604021338_4686608_3524421_n_1_.jpg",
+      bio: "Art Director with a passion for multimedia and design. For the past fourteen years, Cora has utilized and enhanced her skill set via her professional career and schooling. She graduated from the School of Visual Arts in 1997, and has worked as a Graphic Designer, Web Designer, and Art Director in New York and Germany. Cora started her career in print design and later expanded her repertoire by attending New York University in 2000, where she received a Multimedia Certificate. Her experience encompasses a broad range of projects in design and multimedia. In 2003, Cora started her own design company, working with clients in the fashion, entertainment and pharmaceutical industries. In 2009 she co-founded Solara Films, along with Rawle Fitz Williams."
+    },
+    olivos: {
+      name: "Roman Olivos",
+      role: "Information Architect",
+      photo: "images/129_for_M_copy_1_.jpg",
+      bio: "Roman Olivos graduated from Columbia University with a focus on Mathematics, Science and Technology with a Master of Arts in New Media/Digital Communication and Education. He also holds a Bachelor of Arts in English Literature with a Minor in Anthropology from Baruch College, NYC. He is currently a part-time law student. Professionally, he holds an extensive background in Digital Production and has worked as Executive Producer for Publicis Groupe, Omnicom and The Interpublic Group companies. Most recently, he has formed a small boutique US-based, bi-coastal Interactive Advertising Agency, iPublishing, LLC."
+    },
+    wilson: {
+      name: "Dr. Ronaldo Wilson, Ph.D.",
+      role: "Advisor",
+      photo: "images/360_IMG_0177_1_.jpg",
+      bio: "Ronaldo V. Wilson is the author of <em>Narrative of the Life of the Brown Boy and the White Man</em>, winner of the 2007 Cave Canem Poetry Prize (University of Pittsburgh Press, 2008), and <em>Poems of the Black Object</em>, winner of the 2010 Thom Gunn Award (Futurepoem Books, 2009). He is a graduate of the PhD program in English at the CUNY Graduate Center, and NYU\u2019s Graduate Creative Writing Program. Wilson has won numerous fellowships including the Provincetown Fine Arts Work Center, Cave Canem, Kundiman, Djerassi, Vermont Studio Center, and Yaddo. A co-founder of the Black Took Collective, he teaches creative writing, literature, and African American poetics at Mount Holyoke College."
+    }
+  };
+
+  var panel = document.getElementById('teamBioPanel');
+  var overlay = document.getElementById('teamBioOverlay');
+  var activeNode = null;
+
+  function openTeamBio(key) {
+    var m = teamMembers[key];
+    if (!m) return;
+
+    document.getElementById('teamBioPhoto').src = m.photo;
+    document.getElementById('teamBioPhoto').alt = m.name;
+    document.getElementById('teamBioName').textContent = m.name;
+    document.getElementById('teamBioRole').textContent = m.role;
+    document.getElementById('teamBioText').innerHTML = m.bio;
+
+    if (activeNode) activeNode.classList.remove('active');
+    activeNode = document.querySelector('[data-team="' + key + '"]');
+    if (activeNode) activeNode.classList.add('active');
+
+    panel.classList.add('open');
+    overlay.classList.add('open');
+  }
+
+  function closeTeamBio() {
+    panel.classList.remove('open');
+    overlay.classList.remove('open');
+    if (activeNode) {
+      activeNode.classList.remove('active');
+      activeNode = null;
+    }
+  }
+
+  document.querySelectorAll('.team-star-node').forEach(function(node) {
+    node.addEventListener('click', function() {
+      openTeamBio(this.dataset.team);
+    });
+  });
+
+  document.getElementById('teamBioClose').addEventListener('click', closeTeamBio);
+  overlay.addEventListener('click', closeTeamBio);
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeTeamBio();
+  });
+})();
 </script>
 </body>
 </html>
