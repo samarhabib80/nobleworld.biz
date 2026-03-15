@@ -251,80 +251,6 @@
       margin-top: 8px;
     }
 
-    /* ── Moving Image Cards ── */
-    .media-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-      gap: 20px;
-      margin-top: 28px;
-    }
-
-    .media-card {
-      position: relative;
-      background: #1a1228;
-      border: 1px solid #2d2440;
-      padding: 24px 22px 22px;
-      text-decoration: none;
-      color: inherit;
-      display: flex;
-      flex-direction: column;
-      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
-    }
-
-    .media-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 32px rgba(123,94,167,0.25);
-      border-color: #5a4080;
-    }
-
-    .media-card .media-icon {
-      width: 36px;
-      height: 36px;
-      border: 2px solid #5a4080;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 16px;
-      flex-shrink: 0;
-    }
-
-    .media-card .media-icon svg {
-      fill: #7b5ea7;
-      width: 14px;
-      height: 14px;
-    }
-
-    .media-card .media-title {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: 1.05rem;
-      font-weight: 600;
-      color: #c8b8e8;
-      line-height: 1.35;
-      display: block;
-    }
-
-    .media-card .media-author {
-      font-family: 'Raleway', sans-serif;
-      font-size: 0.68rem;
-      font-weight: 500;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: #6a5a88;
-      display: block;
-      margin-top: 8px;
-    }
-
-    .media-card .media-format {
-      font-family: 'Raleway', sans-serif;
-      font-size: 0.55rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: #5a4080;
-      display: block;
-      margin-top: 12px;
-    }
-
     /* Section dividers */
     .section-label {
       font-family: 'Raleway', sans-serif;
@@ -340,7 +266,6 @@
 
     @media (max-width: 680px) {
       .chapter-grid { grid-template-columns: 1fr 1fr; }
-      .media-grid { grid-template-columns: 1fr; }
     }
     @media (max-width: 420px) {
       .chapter-grid { grid-template-columns: 1fr; }
@@ -397,112 +322,140 @@
       line-height: 1.65;
     }
 
-    /* Gallery */
-    .gallery-artist { margin-bottom: 48px; }
+    /* ── Exhibit Slideshow ── */
+    .exhibit {
+      margin-bottom: 56px;
+    }
 
-    .gallery-artist-name {
+    .exhibit-artist {
       font-family: 'Playfair Display', Georgia, serif;
       font-size: 1.3rem;
       font-weight: 700;
       color: #c8b8e8;
-      margin-bottom: 16px;
+      margin-bottom: 20px;
     }
 
-    .gallery-grid {
+    .exhibit-viewer {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-    }
-
-    .gallery-item {
-      position: relative;
-      cursor: pointer;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      background: #14101c;
+      border: 1px solid #2d2440;
       overflow: hidden;
-      background: #1a1228;
     }
 
-    .gallery-item img {
-      width: 100%;
-      aspect-ratio: 1;
-      object-fit: cover;
-      display: block;
-      transition: opacity 0.2s;
-    }
-
-    .gallery-item:hover img { opacity: 0.75; }
-
-    .gallery-item .gallery-caption {
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      background: linear-gradient(transparent, rgba(0,0,0,0.85));
-      padding: 24px 10px 10px;
-      font-family: 'EB Garamond', Georgia, serif;
-      font-size: 0.78rem;
-      color: #c8b8e8;
-      font-style: italic;
-      line-height: 1.3;
-      opacity: 0;
-      transition: opacity 0.2s;
-    }
-
-    .gallery-item:hover .gallery-caption { opacity: 1; }
-
-    /* Lightbox */
-    .lightbox {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.93);
-      z-index: 1000;
-      justify-content: center;
+    .exhibit-image {
+      position: relative;
+      background: #0e0c14;
+      display: flex;
       align-items: center;
-      flex-direction: column;
-      padding: 32px;
+      justify-content: center;
+      min-height: 340px;
     }
 
-    .lightbox.active { display: flex; }
-
-    .lightbox img {
-      max-width: 700px;
-      max-height: 70vh;
+    .exhibit-image img {
+      width: 100%;
+      height: 100%;
       object-fit: contain;
       display: block;
+      max-height: 450px;
+      padding: 16px;
     }
 
-    .lightbox-info {
-      max-width: 700px;
-      width: 100%;
-      margin-top: 20px;
-      color: #c8b8e8;
+    .exhibit-note {
+      padding: 32px 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border-left: 1px solid #2d2440;
     }
 
-    .lightbox-info .lb-title {
+    .exhibit-note .note-title {
       font-family: 'Playfair Display', Georgia, serif;
-      font-size: 1rem;
+      font-size: 1.05rem;
       font-weight: 600;
+      color: #c8b8e8;
+      line-height: 1.4;
       display: block;
-      margin-bottom: 6px;
+      margin-bottom: 14px;
     }
 
-    .lightbox-info .lb-desc {
+    .exhibit-note .note-desc {
       font-family: 'EB Garamond', Georgia, serif;
       font-size: 0.92rem;
       color: #8a7aaa;
       font-style: italic;
-      line-height: 1.6;
+      line-height: 1.7;
     }
 
-    .lightbox-close {
-      position: absolute;
-      top: 20px; right: 28px;
-      color: #8a7aaa;
-      font-size: 2rem;
+    .exhibit-note .note-empty {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 0.92rem;
+      color: #4a3d60;
+      font-style: italic;
+    }
+
+    .exhibit-controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      background: #1a1228;
+      border: 1px solid #2d2440;
+      border-top: none;
+      padding: 0;
+    }
+
+    .exhibit-btn {
+      background: none;
+      border: none;
+      color: #6a5a88;
       cursor: pointer;
-      font-family: sans-serif;
-      line-height: 1;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: color 0.2s, background 0.2s;
     }
 
-    .lightbox-close:hover { color: #c8b8e8; }
+    .exhibit-btn:hover {
+      color: #c8b8e8;
+      background: rgba(123,94,167,0.1);
+    }
+
+    .exhibit-btn:disabled {
+      color: #2d2440;
+      cursor: default;
+      background: none;
+    }
+
+    .exhibit-btn svg {
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
+    }
+
+    .exhibit-counter {
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      color: #6a5a88;
+      padding: 0 16px;
+      min-width: 80px;
+      text-align: center;
+    }
+
+    @media (max-width: 680px) {
+      .exhibit-viewer {
+        grid-template-columns: 1fr;
+      }
+      .exhibit-note {
+        border-left: none;
+        border-top: 1px solid #2d2440;
+        padding: 24px 20px;
+      }
+      .exhibit-image { min-height: 240px; }
+    }
   </style>
 </head>
 <body>
@@ -694,186 +647,186 @@
       </div>
 
       <!-- JOHANNA DRUCKER -->
-      <div class="gallery-artist">
-        <div class="gallery-artist-name">Johanna Drucker</div>
-        <div class="gallery-grid">
-          <div class="gallery-item" onclick="openLightbox('images/481_1_Stoch_1_.jpg','','')">
-            <img src="images/335_1_Stoch_1_.jpg" alt="Johanna Drucker">
-            <span class="gallery-caption">Stoch series</span>
+      <div class="exhibit" data-exhibit="drucker">
+        <div class="exhibit-artist">Johanna Drucker</div>
+        <div class="exhibit-viewer">
+          <div class="exhibit-image">
+            <img data-slides='[
+              {"src":"images/481_1_Stoch_1_.jpg","title":"Stoch series, 1","desc":""},
+              {"src":"images/542_2_Stoch_1_.jpg","title":"Stoch series, 2","desc":""},
+              {"src":"images/542_3_Stoch_1_.jpg","title":"Stoch series, 3","desc":""},
+              {"src":"images/623_4_Stoch_1_.jpg","title":"Stoch series, 4","desc":""},
+              {"src":"images/631_5_Stoch_1_.jpg","title":"Stoch series, 5","desc":""},
+              {"src":"images/630_6_Stoch_1_.jpg","title":"Stoch series, 6","desc":""},
+              {"src":"images/558_7_Stoch_1_.jpg","title":"Stoch series, 7","desc":""},
+              {"src":"images/558_8_Stoch_1_.jpg","title":"Stoch series, 8","desc":""}
+            ]' src="images/481_1_Stoch_1_.jpg" alt="Stoch series">
           </div>
-          <div class="gallery-item" onclick="openLightbox('images/542_2_Stoch_1_.jpg','','')">
-            <img src="images/377_2_Stoch_1_.jpg" alt="Johanna Drucker">
-            <span class="gallery-caption">Stoch series</span>
+          <div class="exhibit-note">
+            <span class="note-title">Stoch series, 1</span>
+            <span class="note-desc note-empty">Visual work</span>
           </div>
-          <div class="gallery-item" onclick="openLightbox('images/542_3_Stoch_1_.jpg','','')">
-            <img src="images/377_3_Stoch_1_.jpg" alt="Johanna Drucker">
-            <span class="gallery-caption">Stoch series</span>
-          </div>
-          <div class="gallery-item" onclick="openLightbox('images/623_4_Stoch_1_.jpg','','')">
-            <img src="images/433_4_Stoch_1_.jpg" alt="Johanna Drucker">
-            <span class="gallery-caption">Stoch series</span>
-          </div>
-          <div class="gallery-item" onclick="openLightbox('images/631_5_Stoch_1_.jpg','','')">
-            <img src="images/439_5_Stoch_1_.jpg" alt="Johanna Drucker">
-            <span class="gallery-caption">Stoch series</span>
-          </div>
-          <div class="gallery-item" onclick="openLightbox('images/630_6_Stoch_1_.jpg','','')">
-            <img src="images/438_6_Stoch_1_.jpg" alt="Johanna Drucker">
-            <span class="gallery-caption">Stoch series</span>
-          </div>
-          <div class="gallery-item" onclick="openLightbox('images/558_7_Stoch_1_.jpg','','')">
-            <img src="images/388_7_Stoch_1_.jpg" alt="Johanna Drucker">
-            <span class="gallery-caption">Stoch series</span>
-          </div>
-          <div class="gallery-item" onclick="openLightbox('images/558_8_Stoch_1_.jpg','','')">
-            <img src="images/388_8_Stoch_1_.jpg" alt="Johanna Drucker">
-            <span class="gallery-caption">Stoch series</span>
-          </div>
+        </div>
+        <div class="exhibit-controls">
+          <button class="exhibit-btn" data-dir="prev" disabled>
+            <svg viewBox="0 0 24 24"><polygon points="19,20 9,12 19,4"/><rect x="5" y="4" width="3" height="16"/></svg>
+          </button>
+          <span class="exhibit-counter">1 / 8</span>
+          <button class="exhibit-btn" data-dir="next">
+            <svg viewBox="0 0 24 24"><polygon points="5,4 15,12 5,20"/><rect x="16" y="4" width="3" height="16"/></svg>
+          </button>
         </div>
       </div>
 
       <!-- CLIFFORD EBERLY -->
-      <div class="gallery-artist">
-        <div class="gallery-artist-name">Clifford Eberly</div>
-        <div class="gallery-grid">
-          <div class="gallery-item" onclick="openLightbox('images/600_1Clifford.Eberly_1_.jpg','Pondgull Triptych, 2008, oil on panels, 33&quot;w x 10.25&quot;h','From behind the rocks, Pondgull looks on, sidelong with an introspective gaze. Originally shown separately, I now consider the panels to be a singular unit. The inspiration for this triptych comes from a photograph taken by a friend/muse at the tip of Cape Cod, otherwise known as Long Point. Geography and location are important referential elements within my art practice. This painting was shown as a part of the Clifford Eberly Pondgull installation exhibited at the Mantis Collective in Harrisburg, PA during November, 2008.')">
-            <img src="images/480_1Clifford.Eberly_1_.jpg" alt="Pondgull Triptych">
-            <span class="gallery-caption">Pondgull Triptych, 2008</span>
+      <div class="exhibit" data-exhibit="eberly">
+        <div class="exhibit-artist">Clifford Eberly</div>
+        <div class="exhibit-viewer">
+          <div class="exhibit-image">
+            <img data-slides='[
+              {"src":"images/600_1Clifford.Eberly_1_.jpg","title":"Pondgull Triptych, 2008, oil on panels, 33\"w x 10.25\"h","desc":"From behind the rocks, Pondgull looks on, sidelong with an introspective gaze. Originally shown separately, I now consider the panels to be a singular unit. The inspiration for this triptych comes from a photograph taken by a friend/muse at the tip of Cape Cod, otherwise known as Long Point. Geography and location are important referential elements within my art practice. This painting was shown as a part of the Clifford Eberly Pondgull installation exhibited at the Mantis Collective in Harrisburg, PA during November, 2008."},
+              {"src":"images/600_2Clifford.Eberly_1_.jpg","title":"Pondgull Opts Out, 2008, oil on panel, 10.5\"w x 13\"h","desc":"The painting illustrates Pondgull deciding not to eat a starfish, unlike his seagull cousins. Few humans witness starfish being preyed upon by seagulls, sharks and manta rays. Pondgull Opts Out is a unique work in the series because Pondgull shares the space with a likeness of another animal, creating a more narrative formula in the process. Exhibited in Clifford Eberly Pondgull in November, 2008 at the Mantis Collective in Harrisburg, PA."},
+              {"src":"images/600_9Clifford.Eberly_1_.jpg","title":"Pondgull vs. Hope, 2008, oil on wood, 24\"w x 24\"h","desc":"The subject of this painting is the daily battle in which the character Pondgull struggles to remain positive when faced with challenging adversaries who want to see him fail. The wishbone is the symbol of escape for Pondgull."},
+              {"src":"images/600_12Clifford.Eberly_1_.jpg","title":"Pondgull Anger, 2009, oil on canvas, 24\"w x 20\"h","desc":"Hovering upon layers of palimpsest, the emblematic bird form is caught surveying the expressive landscape and the graphic architectural forms from a vantage point above."},
+              {"src":"images/600_17Clifford.Eberly_1_.jpg","title":"Ghosting Head, 2009, watercolor, ink, metal leaf & acrylic on matte board, 14\"w x 15\"h","desc":"One of the most recent works in the Pondgull series, Ghosting Head depicts the soothing ground of a sunset landscape. The bridge form cuts through the terrain into the sky where a Pondgull takes off from the top of the structure. Black veins or tendrils protrude from the head of a third Pondgull at the bottom of the painting, sending out signals to the world from the other side."}
+            ]' src="images/600_1Clifford.Eberly_1_.jpg" alt="Pondgull Triptych">
           </div>
-          <div class="gallery-item" onclick="openLightbox('images/600_2Clifford.Eberly_1_.jpg','&quot;Pondgull Opts Out,&quot; 2008, oil on panel, 10.5&quot;w x 13&quot;h','The painting illustrates Pondgull deciding not to eat a starfish, unlike his seagull cousins. Few humans witness starfish being preyed upon by seagulls, sharks and manta rays. &quot;Pondgull Opts Out&quot; is a unique work in the series because Pondgull shares the space with a likeness of another animal, creating a more narrative formula in the process. Exhibited in &quot;Clifford Eberly Pondgull&quot; in November, 2008 at the Mantis Collective in Harrisburg, PA.')">
-            <img src="images/480_2Clifford.Eberly_1_.jpg" alt="Pondgull Opts Out">
-            <span class="gallery-caption">Pondgull Opts Out, 2008</span>
+          <div class="exhibit-note">
+            <span class="note-title">Pondgull Triptych, 2008, oil on panels, 33"w x 10.25"h</span>
+            <span class="note-desc">From behind the rocks, Pondgull looks on, sidelong with an introspective gaze. Originally shown separately, I now consider the panels to be a singular unit. The inspiration for this triptych comes from a photograph taken by a friend/muse at the tip of Cape Cod, otherwise known as Long Point. Geography and location are important referential elements within my art practice. This painting was shown as a part of the Clifford Eberly Pondgull installation exhibited at the Mantis Collective in Harrisburg, PA during November, 2008.</span>
           </div>
-          <div class="gallery-item" onclick="openLightbox('images/600_9Clifford.Eberly_1_.jpg','Pondgull vs. Hope, 2008, oil on wood, 24&quot;w x 24&quot;h','The subject of this painting is the daily battle in which the character Pondgull struggles to remain positive when faced with challenging adversaries who want to see him fail. The wishbone is the symbol of escape for Pondgull.')">
-            <img src="images/480_9Clifford.Eberly_1_.jpg" alt="Pondgull vs. Hope">
-            <span class="gallery-caption">Pondgull vs. Hope, 2008</span>
-          </div>
-          <div class="gallery-item" onclick="openLightbox('images/600_12Clifford.Eberly_1_.jpg','Pondgull Anger, 2009, oil on canvas, 24&quot;w x 20&quot;h','Hovering upon layers of palimpsest, the emblematic bird form is caught surveying the expressive landscape and the graphic architectural forms from a vantage point above.')">
-            <img src="images/480_12Clifford.Eberly_1_.jpg" alt="Pondgull Anger">
-            <span class="gallery-caption">Pondgull Anger, 2009</span>
-          </div>
-          <div class="gallery-item" onclick="openLightbox('images/600_17Clifford.Eberly_1_.jpg','&quot;Ghosting Head,&quot; 2009, watercolor, ink, metal leaf, &amp; acrylic on matte board, 14&quot;w x 15&quot;h','One of the most recent works in the Pondgull series, &quot;Ghosting Head&quot; depicts the soothing ground of a sunset landscape. The bridge form cuts through the terrain into the sky where a Pondgull takes off from the top of the structure. Black veins or tendrils protrude from the head of a third Pondgull at the bottom of the painting, sending out signals to the world from &quot;the other side.&quot;')">
-            <img src="images/480_17Clifford.Eberly_1_.jpg" alt="Ghosting Head">
-            <span class="gallery-caption">Ghosting Head, 2009</span>
-          </div>
+        </div>
+        <div class="exhibit-controls">
+          <button class="exhibit-btn" data-dir="prev" disabled>
+            <svg viewBox="0 0 24 24"><polygon points="19,20 9,12 19,4"/><rect x="5" y="4" width="3" height="16"/></svg>
+          </button>
+          <span class="exhibit-counter">1 / 5</span>
+          <button class="exhibit-btn" data-dir="next">
+            <svg viewBox="0 0 24 24"><polygon points="5,4 15,12 5,20"/><rect x="16" y="4" width="3" height="16"/></svg>
+          </button>
         </div>
       </div>
 
       <!-- ANTHEA BROWN -->
-      <div class="gallery-artist">
-        <div class="gallery-artist-name">Anthea Brown</div>
-        <div class="gallery-grid">
-          <div class="gallery-item" onclick="openLightbox('images/480_Untitled-1yy.jpg','Untitled','Acrylic paint, applied with sable brush')">
-            <img src="images/216_Untitled-1yy.jpg" alt="Untitled">
-            <span class="gallery-caption">Untitled</span>
+      <div class="exhibit" data-exhibit="brown">
+        <div class="exhibit-artist">Anthea Brown</div>
+        <div class="exhibit-viewer">
+          <div class="exhibit-image">
+            <img data-slides='[
+              {"src":"images/480_Untitled-1yy.jpg","title":"Untitled","desc":"Acrylic paint, applied with sable brush"},
+              {"src":"images/480_Untitled-2yy.jpg","title":"Untitled","desc":"Acrylic paint, applied with sable brush"},
+              {"src":"images/404_mannie1yy.jpg","title":"Mannequin 1","desc":"These mannequins were once used in the Times Square Virgin Megastore. Prior to closing their doors, the store put everything up for sale — and I mean everything! I bought one dummy during my lunch break on a whim, and proudly walked thru the streets carrying a stark white naked mannequin, even riding the subway home during rush hour as if this were a completely normal occurrence for me. Tourists asked what I would do with it, and I let them know that I would love to paint what I feel on the inside on the outside of this new bodily surface. That weekend, I headed back for 5 more abandoned mannequins and gleefully ran thru Times Square with them all over again."},
+              {"src":"images/449_mannie-2yy.jpg","title":"Mannequin 2","desc":"Virgin Megastore mannequin, Liquitex"},
+              {"src":"images/398_mannie-3yy.jpg","title":"Mannequin 3","desc":"Virgin Megastore mannequin, Liquitex"},
+              {"src":"images/453_mannie-4yy.jpg","title":"Mannequin 4","desc":"Virgin Megastore mannequin, Liquitex"}
+            ]' src="images/480_Untitled-1yy.jpg" alt="Untitled">
           </div>
-          <div class="gallery-item" onclick="openLightbox('images/480_Untitled-2yy.jpg','Untitled','Acrylic paint, applied with sable brush')">
-            <img src="images/216_Untitled-2yy.jpg" alt="Untitled">
-            <span class="gallery-caption">Untitled</span>
+          <div class="exhibit-note">
+            <span class="note-title">Untitled</span>
+            <span class="note-desc">Acrylic paint, applied with sable brush</span>
           </div>
-          <div class="gallery-item" onclick="openLightbox('images/404_mannie1yy.jpg','Mannequin 1','These mannequins were once used in the Times Square Virgin Megastore. Prior to closing their doors, the store put everything up for sale — and I mean everything! I bought one dummy during my lunch break on a whim, and proudly walked thru the streets carrying a stark white naked mannequin, even riding the subway home during rush hour as if this were a completely normal occurrence for me. Tourists asked what I would do with it, and I let them know that I would love to paint what I feel on the inside on the outside of this new bodily surface. That weekend, I headed back for 5 more abandoned mannequins and gleefully ran thru Times Square with them all over again.')">
-            <img src="images/145_mannie1yy.jpg" alt="Mannequin 1">
-            <span class="gallery-caption">Mannequin 1</span>
-          </div>
-          <div class="gallery-item" onclick="openLightbox('images/449_mannie-2yy.jpg','Mannequin 2','Virgin Megastore mannequin, Liquitex')">
-            <img src="images/161_mannie-2yy.jpg" alt="Mannequin 2">
-            <span class="gallery-caption">Mannequin 2</span>
-          </div>
-          <div class="gallery-item" onclick="openLightbox('images/398_mannie-3yy.jpg','Mannequin 3','Virgin Megastore mannequin, Liquitex')">
-            <img src="images/143_mannie-3yy.jpg" alt="Mannequin 3">
-            <span class="gallery-caption">Mannequin 3</span>
-          </div>
-          <div class="gallery-item" onclick="openLightbox('images/453_mannie-4yy.jpg','Mannequin 4','Virgin Megastore mannequin, Liquitex')">
-            <img src="images/126_mannie-4yy.jpg" alt="Mannequin 4">
-            <span class="gallery-caption">Mannequin 4</span>
-          </div>
+        </div>
+        <div class="exhibit-controls">
+          <button class="exhibit-btn" data-dir="prev" disabled>
+            <svg viewBox="0 0 24 24"><polygon points="19,20 9,12 19,4"/><rect x="5" y="4" width="3" height="16"/></svg>
+          </button>
+          <span class="exhibit-counter">1 / 6</span>
+          <button class="exhibit-btn" data-dir="next">
+            <svg viewBox="0 0 24 24"><polygon points="5,4 15,12 5,20"/><rect x="16" y="4" width="3" height="16"/></svg>
+          </button>
         </div>
       </div>
 
       <!-- LAURA KAPLAN -->
-      <div class="gallery-artist">
-        <div class="gallery-artist-name">Laura Kaplan</div>
-        <div class="gallery-grid">
-          <div class="gallery-item" onclick="openLightbox('images/449_Throne_Thangxx.jpg','Throne Thang','Original Scottish bishop\'s throne made of wood, stockings, pantyhose, fabric, hair, various stuffing, thread, paint, varnish. Performance artist ROSE WOOD seated. 65&quot;x 65&quot; x 80&quot;')">
-            <img src="images/125_Throne_Thangxx.jpg" alt="Throne Thang">
-            <span class="gallery-caption">Throne Thang</span>
+      <div class="exhibit" data-exhibit="kaplan">
+        <div class="exhibit-artist">Laura Kaplan</div>
+        <div class="exhibit-viewer">
+          <div class="exhibit-image">
+            <img data-slides='[
+              {"src":"images/449_Throne_Thangxx.jpg","title":"Throne Thang","desc":"Original Scottish bishop\u0027s throne made of wood, stockings, pantyhose, fabric, hair, various stuffing, thread, paint, varnish. Performance artist ROSE WOOD seated. 65\" x 65\" x 80\""},
+              {"src":"images/259_billy_blob_1_xx.jpg","title":"Billy Blob","desc":"Fabric, stuffing, hair, thread, varnish. 38\" x 34\" x 66\""},
+              {"src":"images/280_hairy_harry_1_xx.jpg","title":"Hairy Harry","desc":"Pantyhose, hair, rope, Ace bandage, paint, wood. 26\" x 26\" x 70\""},
+              {"src":"images/434_family_values_tour_1_xx.jpg","title":"Family Value Tour","desc":"Vintage mannequins, stockings, hair, various stuffing, nails, epoxy, paint. 12\" x 14\" x 36\" up to 20\" x 24\" x 66\""},
+              {"src":"images/563_Thunder_1_xx.jpg","title":"Thunder","desc":"Vintage rocking horse, plastic, epoxy, paint, fabric, stuffing. 32\" x 58\" x 44\""}
+            ]' src="images/449_Throne_Thangxx.jpg" alt="Throne Thang">
           </div>
-          <div class="gallery-item" onclick="openLightbox('images/259_billy_blob_1_xx.jpg','Billy Blob','Fabric, stuffing, hair, thread, varnish. 38&quot; x 34&quot; x 66&quot;')">
-            <img src="images/115_billy_blob_1_xx.jpg" alt="Billy Blob">
-            <span class="gallery-caption">Billy Blob</span>
+          <div class="exhibit-note">
+            <span class="note-title">Throne Thang</span>
+            <span class="note-desc">Original Scottish bishop's throne made of wood, stockings, pantyhose, fabric, hair, various stuffing, thread, paint, varnish. Performance artist ROSE WOOD seated. 65" x 65" x 80"</span>
           </div>
-          <div class="gallery-item" onclick="openLightbox('images/280_hairy_harry_1_xx.jpg','Hairy Harry','Pantyhose, hair, rope, Ace bandage, paint, wood. 26&quot; x 26&quot; x 70&quot;')">
-            <img src="images/100_hairy_harry_1_xx.jpg" alt="Hairy Harry">
-            <span class="gallery-caption">Hairy Harry</span>
-          </div>
-          <div class="gallery-item" onclick="openLightbox('images/434_family_values_tour_1_xx.jpg','Family Value Tour','Vintage mannequins, stockings, hair, various stuffing, nails, epoxy, paint. 12&quot; x 14&quot; x 36&quot; up to 20&quot;x 24&quot; x 66&quot;')">
-            <img src="images/121_family_values_tour_1_xx.jpg" alt="Family Value Tour">
-            <span class="gallery-caption">Family Value Tour</span>
-          </div>
-          <div class="gallery-item" onclick="openLightbox('images/563_Thunder_1_xx.jpg','Thunder','Vintage rocking horse, plastic, epoxy, paint, fabric, stuffing. 32&quot; x 58&quot; x 44&quot;')">
-            <img src="images/117_Thunder_1_xx.jpg" alt="Thunder">
-            <span class="gallery-caption">Thunder</span>
-          </div>
+        </div>
+        <div class="exhibit-controls">
+          <button class="exhibit-btn" data-dir="prev" disabled>
+            <svg viewBox="0 0 24 24"><polygon points="19,20 9,12 19,4"/><rect x="5" y="4" width="3" height="16"/></svg>
+          </button>
+          <span class="exhibit-counter">1 / 5</span>
+          <button class="exhibit-btn" data-dir="next">
+            <svg viewBox="0 0 24 24"><polygon points="5,4 15,12 5,20"/><rect x="16" y="4" width="3" height="16"/></svg>
+          </button>
         </div>
       </div>
 
       <!-- GLAMOURPUSS -->
-      <div class="gallery-artist">
-        <div class="gallery-artist-name">Glamourpuss</div>
-        <div class="gallery-grid">
-          <div class="gallery-item" onclick="openLightbox('images/426_Lucille_Out_Of_Order_Marz_Bar_06_1_.jpg','Lucille, Mars Bar (Digital Photograph)','At only 25 years old, Lucille is already a New York City institution. She is a French-born personality of Senegalese ancestry. The photo was taken at the famous Lower East Side dive Mars Bar, where Lucille works as a bartender. There she collects stories and befriends characters from all walks of life.')">
-            <img src="images/162_Lucille_Out_Of_Order_Marz_Bar_06_1_.jpg" alt="Lucille, Mars Bar">
-            <span class="gallery-caption">Lucille, Mars Bar</span>
+      <div class="exhibit" data-exhibit="glamourpuss">
+        <div class="exhibit-artist">Glamourpuss</div>
+        <div class="exhibit-viewer">
+          <div class="exhibit-image">
+            <img data-slides='[
+              {"src":"images/426_Lucille_Out_Of_Order_Marz_Bar_06_1_.jpg","title":"Lucille, Mars Bar (Digital Photograph)","desc":"At only 25 years old, Lucille is already a New York City institution. She is a French-born personality of Senegalese ancestry. The photo was taken at the famous Lower East Side dive Mars Bar, where Lucille works as a bartender. There she collects stories and befriends characters from all walks of life."},
+              {"src":"images/690_Sunny_Jake_06_1_.jpg","title":"Sunny & Jake (Digital Photograph)","desc":"The image of Sunny and Jake represents the essence of true friendship and admiration, two beautifully wild souls who soar through life as restless dreamers. Jake is lead singer of the punk band Wellington Ladies Welfare League, and Sunny is a Parisian model turned St. Marks socialite."},
+              {"src":"images/690_Zach_Marilyn_06_1_.jpg","title":"Zach & Marilyn (Digital Photograph)","desc":"Zach Draper is the photographer\u0027s assistant, muse and best friend. The photo of Zach and Marilyn captures many of the thousand-and-one nights the two spent together playing dress up, listening to music and drinking too much red wine."}
+            ]' src="images/426_Lucille_Out_Of_Order_Marz_Bar_06_1_.jpg" alt="Lucille, Mars Bar">
           </div>
-          <div class="gallery-item" onclick="openLightbox('images/690_Sunny_Jake_06_1_.jpg','Sunny &amp; Jake (Digital Photograph)','The image of Sunny and Jake represents the essence of true friendship and admiration, two beautifully wild souls who soar through life as restless dreamers. Jake is lead singer of the punk band Wellington Ladies Welfare League, and Sunny is a Parisian model turned St. Marks socialite.')">
-            <img src="images/216_Sunny_Jake_06_1_.jpg" alt="Sunny and Jake">
-            <span class="gallery-caption">Sunny &amp; Jake</span>
+          <div class="exhibit-note">
+            <span class="note-title">Lucille, Mars Bar (Digital Photograph)</span>
+            <span class="note-desc">At only 25 years old, Lucille is already a New York City institution. She is a French-born personality of Senegalese ancestry. The photo was taken at the famous Lower East Side dive Mars Bar, where Lucille works as a bartender. There she collects stories and befriends characters from all walks of life.</span>
           </div>
-          <div class="gallery-item" onclick="openLightbox('images/690_Zach_Marilyn_06_1_.jpg','Zach &amp; Marilyn (Digital Photograph)','Zach Draper is the photographer\'s assistant, muse and best friend. The photo of Zach and Marilyn captures many of the thousand-and-one nights the two spent together playing dress up, listening to music and drinking too much red wine.')">
-            <img src="images/216_Zach_Marilyn_06_1_.jpg" alt="Zach and Marilyn">
-            <span class="gallery-caption">Zach &amp; Marilyn</span>
-          </div>
+        </div>
+        <div class="exhibit-controls">
+          <button class="exhibit-btn" data-dir="prev" disabled>
+            <svg viewBox="0 0 24 24"><polygon points="19,20 9,12 19,4"/><rect x="5" y="4" width="3" height="16"/></svg>
+          </button>
+          <span class="exhibit-counter">1 / 3</span>
+          <button class="exhibit-btn" data-dir="next">
+            <svg viewBox="0 0 24 24"><polygon points="5,4 15,12 5,20"/><rect x="16" y="4" width="3" height="16"/></svg>
+          </button>
         </div>
       </div>
 
-      <span class="section-label">moving image</span>
+      <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #3d2d5a;">
+        <span class="section-label">moving image</span>
+      </div>
 
-      <div class="media-grid">
-        <a class="media-card" href="images/rosewood.pdf" target="_blank">
-          <div class="media-icon">
-            <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zM6 20V4h7v5h5v11H6z"/></svg>
+      <!-- MOVING IMAGE EXHIBIT -->
+      <div class="exhibit" data-exhibit="movingimage">
+        <div class="exhibit-artist">Moving Image</div>
+        <div class="exhibit-viewer">
+          <div class="exhibit-image" id="mi-frame">
+            <img data-slides='[
+              {"type":"pdf","src":"images/rosewood.pdf","title":"Transfixed By Rose Wood","desc":"Joe E. Jeffreys","href":"images/rosewood.pdf"},
+              {"type":"video","src":"https://www.youtube.com/embed/SM1FWmcUU_8","title":"My Scarlet Genitive","desc":"Cinzia Cremona"},
+              {"type":"video","src":"https://www.youtube.com/embed/O_pYdT2r_5k","title":"The Other Person","desc":"Cinzia Cremona"},
+              {"type":"video","src":"https://www.youtube.com/embed/LAPgVOw4Y3Q","title":"The Spectacle","desc":"Dominika Ksel"}
+            ]' src="" alt="" style="display:none;">
+            <div class="mi-placeholder" style="text-align:center; padding:40px 20px;">
+              <svg viewBox="0 0 24 24" style="width:48px;height:48px;fill:#5a4080;margin-bottom:12px;display:block;margin-left:auto;margin-right:auto;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zM6 20V4h7v5h5v11H6z"/></svg>
+              <span style="font-family:'Raleway',sans-serif;font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:#6a5a88;display:block;">PDF — click to open</span>
+            </div>
           </div>
-          <span class="media-title">Transfixed By Rose Wood</span>
-          <span class="media-author">Joe E. Jeffreys</span>
-          <span class="media-format">↓ PDF</span>
-        </a>
-
-        <a class="media-card" href="https://www.youtube.com/watch?v=SM1FWmcUU_8" target="_blank">
-          <div class="media-icon">
-            <svg viewBox="0 0 24 24"><polygon points="8,5 20,12 8,19"/></svg>
+          <div class="exhibit-note">
+            <span class="note-title">Transfixed By Rose Wood</span>
+            <span class="note-desc">Joe E. Jeffreys</span>
           </div>
-          <span class="media-title">My Scarlet Genitive</span>
-          <span class="media-author">Cinzia Cremona</span>
-          <span class="media-format">▶ Video</span>
-        </a>
-
-        <a class="media-card" href="https://www.youtube.com/watch?v=O_pYdT2r_5k" target="_blank">
-          <div class="media-icon">
-            <svg viewBox="0 0 24 24"><polygon points="8,5 20,12 8,19"/></svg>
-          </div>
-          <span class="media-title">The Other Person</span>
-          <span class="media-author">Cinzia Cremona</span>
-          <span class="media-format">▶ Video</span>
-        </a>
-
-        <a class="media-card" href="https://www.youtube.com/watch?v=LAPgVOw4Y3Q" target="_blank">
-          <div class="media-icon">
-            <svg viewBox="0 0 24 24"><polygon points="8,5 20,12 8,19"/></svg>
-          </div>
-          <span class="media-title">The Spectacle</span>
-          <span class="media-author">Dominika Ksel</span>
-          <span class="media-format">▶ Video</span>
-        </a>
+        </div>
+        <div class="exhibit-controls">
+          <button class="exhibit-btn" data-dir="prev" disabled>
+            <svg viewBox="0 0 24 24"><polygon points="19,20 9,12 19,4"/><rect x="5" y="4" width="3" height="16"/></svg>
+          </button>
+          <span class="exhibit-counter">1 / 4</span>
+          <button class="exhibit-btn" data-dir="next">
+            <svg viewBox="0 0 24 24"><polygon points="5,4 15,12 5,20"/><rect x="16" y="4" width="3" height="16"/></svg>
+          </button>
+        </div>
       </div>
 
       <div style="margin-top: 32px;">
@@ -967,26 +920,87 @@
     <p class="footer-copy">© Nebula and its contributors. All rights reserved.</p>
   </footer>
 
-<div class="lightbox" id="lightbox" onclick="if(event.target===this)closeLightbox()">
-  <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
-  <img id="lb-img" src="" alt="">
-  <div class="lightbox-info">
-    <span class="lb-title" id="lb-title"></span>
-    <span class="lb-desc" id="lb-desc"></span>
-  </div>
-</div>
 <script>
-function openLightbox(src, title, desc) {
-  document.getElementById('lb-img').src = src;
-  document.getElementById('lb-title').textContent = title;
-  document.getElementById('lb-desc').textContent = desc;
-  document.getElementById('lightbox').classList.add('active');
-}
-function closeLightbox() {
-  document.getElementById('lightbox').classList.remove('active');
-}
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') closeLightbox();
+document.querySelectorAll('.exhibit').forEach(function(exhibit) {
+  var img = exhibit.querySelector('.exhibit-image img');
+  var slidesData = img.getAttribute('data-slides');
+  if (!slidesData) return;
+  var slides = JSON.parse(slidesData);
+  var idx = 0;
+  var noteEl = exhibit.querySelector('.exhibit-note');
+  var titleEl = noteEl.querySelector('.note-title');
+  var descEl = noteEl.querySelector('.note-desc');
+  var counter = exhibit.querySelector('.exhibit-counter');
+  var prevBtn = exhibit.querySelector('[data-dir="prev"]');
+  var nextBtn = exhibit.querySelector('[data-dir="next"]');
+  var imageArea = exhibit.querySelector('.exhibit-image');
+  var isMovingImage = slides[0] && slides[0].type;
+
+  function render() {
+    var s = slides[idx];
+    // Clean up any existing iframe or placeholder
+    var oldIframe = imageArea.querySelector('iframe');
+    if (oldIframe) oldIframe.remove();
+    var oldPlaceholder = imageArea.querySelector('.mi-placeholder');
+    if (oldPlaceholder) oldPlaceholder.remove();
+
+    if (isMovingImage) {
+      if (s.type === 'video') {
+        img.style.display = 'none';
+        var iframe = document.createElement('iframe');
+        iframe.src = s.src;
+        iframe.setAttribute('allowfullscreen', '');
+        iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+        iframe.style.cssText = 'width:100%;height:100%;min-height:340px;border:none;display:block;';
+        imageArea.appendChild(iframe);
+      } else {
+        // PDF
+        img.style.display = 'none';
+        var placeholder = document.createElement('a');
+        placeholder.href = s.href || s.src;
+        placeholder.target = '_blank';
+        placeholder.className = 'mi-placeholder';
+        placeholder.style.cssText = 'text-align:center;padding:40px 20px;display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;text-decoration:none;';
+        placeholder.innerHTML = '<svg viewBox="0 0 24 24" style="width:48px;height:48px;fill:#5a4080;margin-bottom:12px;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zM6 20V4h7v5h5v11H6z"/></svg><span style="font-family:Raleway,sans-serif;font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:#6a5a88;">PDF — click to open</span>';
+        imageArea.appendChild(placeholder);
+      }
+    } else {
+      img.style.display = '';
+      img.src = s.src;
+      img.alt = s.title;
+    }
+
+    titleEl.textContent = s.title;
+    if (s.desc) {
+      descEl.textContent = s.desc;
+      descEl.classList.remove('note-empty');
+    } else {
+      descEl.textContent = 'Visual work';
+      descEl.classList.add('note-empty');
+    }
+
+    counter.textContent = (idx + 1) + ' / ' + slides.length;
+    prevBtn.disabled = (idx === 0);
+    nextBtn.disabled = (idx === slides.length - 1);
+  }
+
+  prevBtn.addEventListener('click', function() {
+    if (idx > 0) { idx--; render(); }
+  });
+  nextBtn.addEventListener('click', function() {
+    if (idx < slides.length - 1) { idx++; render(); }
+  });
+
+  // Make the image area clickable to open PDF links
+  if (isMovingImage) {
+    imageArea.style.cursor = 'pointer';
+    imageArea.addEventListener('click', function(e) {
+      var s = slides[idx];
+      if (s.type === 'pdf' && s.href && !e.target.closest('a')) {
+        window.open(s.href, '_blank');
+      }
+    });
+  }
 });
 </script>
 </body>
