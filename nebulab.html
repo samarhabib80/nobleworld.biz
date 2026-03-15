@@ -157,6 +157,47 @@
       margin-left: 8px;
       vertical-align: middle;
     }
+
+    /* Contributors */
+    .contributors-section {
+      margin-top: 48px;
+    }
+
+    .contributor-card {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 24px;
+      margin-bottom: 36px;
+      padding-bottom: 36px;
+      border-bottom: 1px solid #2d2440;
+    }
+
+    .contributor-card:last-child { border-bottom: none; }
+
+    .contributor-card img {
+      width: 140px;
+      height: 140px;
+      object-fit: cover;
+      object-position: top;
+      display: block;
+      filter: grayscale(20%);
+    }
+
+    .contributor-info .contrib-name {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #c8b8e8;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .contributor-info .contrib-bio {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 0.95rem;
+      color: #8a7aaa;
+      line-height: 1.65;
+    }
   </style>
 </head>
 <body>
@@ -269,6 +310,38 @@
           <span class="pdf-tag">PDF</span>
         </li>
       </ul>
+    </div>
+
+    <div class="ornament">— ✦ —</div>
+
+    <h2 id="contributors">Contributors &nbsp;<span style="font-size:0.75rem; color:#6a5a88; font-family:'Raleway',sans-serif; letter-spacing:0.1em; font-weight:400;">02.2011</span></h2>
+
+    <div class="contributors-section">
+
+      <div class="contributor-card">
+        <img src="images/480_Photo_4.jpg" alt="Dana Lang">
+        <div class="contributor-info">
+          <span class="contrib-name">Dana Lang</span>
+          <p class="contrib-bio">Dana Lang is a singer/songwriter, poet and playwright who has written, directed and performed her work in New York City, where she lives and works as a freelance writer and editor. Dana earned her MFA in Playwriting at Brooklyn College, where she studied with master of experimental theater Mac Wellman, who greatly inspired the idea behind "Death Caps and the Jersey Devil" with one of his legendarily "damnable" writing exercises. Specifically, he challenged her to write a play which "takes place entirely in the trees and is in seven scenes of alternately one, three, and five pages; a narrator on the ground goes on all fours and has a theory about mushrooms and the origin of life." While her play somewhat departs from this evil prescription, it served as fertile ground for her to continue exploring and merging multiple narratives, characters and themes (her own obsessions), with the resulting work still being largely Mac's fault.</p>
+        </div>
+      </div>
+
+      <div class="contributor-card">
+        <img src="images/423_JEJbyVesPitts.jpg" alt="Joe E. Jeffreys">
+        <div class="contributor-info">
+          <span class="contrib-name">Joe E. Jeffreys</span>
+          <p class="contrib-bio">Joe E. Jeffreys is a drag historian. He teaches Theatre Studies at New York University's Tisch School of the Arts Drama Department and has also taught at Stony Brook University, Purchase and Lehman College. He has published in encyclopedias, journals, including <em>Women in Performance</em> and <em>Theatre History Studies</em>, and in the popular press, from Time Out New York and The Village Voice to Out and The Advocate. He produces the series Drag Show Video Verité and his video shorts have been screened internationally. Photo taken by Ves Pitts.</p>
+        </div>
+      </div>
+
+      <div class="contributor-card">
+        <img src="images/183_Roseglamourshot.jpg" alt="Rose Wood">
+        <div class="contributor-info">
+          <span class="contrib-name">Rose Wood</span>
+          <p class="contrib-bio">Rose Wood is a performance artist who honed her craft in countless Downtown New York City clubs, and has since performed around the world. Her gender-bending acts have earned her much critical acclaim, including the "Most Exotic Moves" award at the 2006 Exotic World Competition and NY Press' "Best of New York" in 2008. She has also appeared in numerous films and has been profiled in the award-winning documentaries "What's in a Name" and "Shape of the Shapeless." She currently divides her time between New York and London, performing nightly at the City's Box Nightclub.</p>
+        </div>
+      </div>
+
     </div>
 
     <!-- Team -->
