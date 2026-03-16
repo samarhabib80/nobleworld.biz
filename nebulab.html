@@ -474,7 +474,8 @@
 
     .team-bio-panel.open { right: 0; }
 
-    .team-bio-inner { padding: 32px 28px 48px; }
+    .team-bio-inner { padding: 32px 28px 48px; transition: opacity 0.15s ease; }
+    .team-bio-inner.swapping { opacity: 0; }
 
     .team-bio-close {
       position: sticky;
@@ -1594,23 +1595,40 @@ document.querySelectorAll('.exhibit').forEach(function(exhibit) {
   var overlay = document.getElementById('teamBioOverlay');
   var activeNode = null;
 
-  function openBio(key, node) {
-    var m = people[key];
-    if (!m) return;
-
+  function populateBio(m) {
     document.getElementById('teamBioPhoto').src = m.photo;
     document.getElementById('teamBioPhoto').alt = m.name;
     document.getElementById('teamBioPhoto').style.objectPosition = m.photoPosition || 'center 20%';
     document.getElementById('teamBioName').textContent = m.name;
     document.getElementById('teamBioRole').textContent = m.role;
     document.getElementById('teamBioText').innerHTML = m.bio;
+  }
+
+  function openBio(key, node) {
+    var m = people[key];
+    if (!m) return;
+
+    var isAlreadyOpen = panel.classList.contains('open');
 
     if (activeNode) activeNode.classList.remove('active');
     activeNode = node;
     if (activeNode) activeNode.classList.add('active');
 
-    panel.classList.add('open');
-    overlay.classList.add('open');
+    if (isAlreadyOpen) {
+      var inner = panel.querySelector('.team-bio-inner');
+      inner.classList.add('swapping');
+      var img = new Image();
+      img.onload = img.onerror = function() {
+        populateBio(m);
+        inner.scrollTop = 0;
+        requestAnimationFrame(function() { inner.classList.remove('swapping'); });
+      };
+      img.src = m.photo;
+    } else {
+      populateBio(m);
+      panel.classList.add('open');
+      overlay.classList.add('open');
+    }
   }
 
   function closeBio() {

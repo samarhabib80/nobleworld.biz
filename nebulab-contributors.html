@@ -182,7 +182,9 @@
 
     .bio-panel-inner {
       padding: 32px 28px 48px;
+      transition: opacity 0.15s ease;
     }
+    .bio-panel-inner.swapping { opacity: 0; }
 
     .bio-close {
       position: sticky;
@@ -728,25 +730,42 @@
       pinnedKey = null;
     }
 
-    function openBio(key) {
-      var c = contributors[key];
-      if (!c) return;
-
-      hidePreview();
-
+    function populateBio(c) {
       document.getElementById('bioPhoto').src = c.photo;
       document.getElementById('bioPhoto').alt = c.name;
       document.getElementById('bioPhoto').style.objectPosition = c.photoPosition || 'center 20%';
       document.getElementById('bioName').textContent = c.name;
       document.getElementById('bioIssue').textContent = c.issue;
       document.getElementById('bioText').innerHTML = c.bio;
+    }
+
+    function openBio(key) {
+      var c = contributors[key];
+      if (!c) return;
+
+      hidePreview();
+
+      var isAlreadyOpen = panel.classList.contains('open');
 
       if (activeNode) activeNode.classList.remove('active');
       activeNode = document.querySelector('[data-contributor="' + key + '"]');
       if (activeNode) activeNode.classList.add('active');
 
-      panel.classList.add('open');
-      overlay.classList.add('open');
+      if (isAlreadyOpen) {
+        var inner = panel.querySelector('.bio-panel-inner');
+        inner.classList.add('swapping');
+        var img = new Image();
+        img.onload = img.onerror = function() {
+          populateBio(c);
+          panel.scrollTop = 0;
+          requestAnimationFrame(function() { inner.classList.remove('swapping'); });
+        };
+        img.src = c.photo;
+      } else {
+        populateBio(c);
+        panel.classList.add('open');
+        overlay.classList.add('open');
+      }
     }
 
     function closeBio() {
