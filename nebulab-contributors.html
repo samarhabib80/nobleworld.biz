@@ -283,6 +283,78 @@
       100% { opacity: 0.8; }
     }
 
+    /* ── Star preview tooltip ── */
+    .star-preview {
+      position: absolute;
+      width: 200px;
+      background: linear-gradient(180deg, #1a1228 0%, #12101a 100%);
+      border: 1px solid #3d2d5a;
+      border-radius: 8px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.6), 0 0 20px rgba(123,94,167,0.15);
+      z-index: 500;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(8px);
+      transition: opacity 0.25s ease, transform 0.25s ease;
+      overflow: hidden;
+    }
+
+    .star-preview.visible {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    .star-preview.pinned {
+      pointer-events: auto;
+    }
+
+    .star-preview-photo {
+      width: 100%;
+      height: 120px;
+      object-fit: cover;
+      object-position: center 20%;
+      display: block;
+      filter: grayscale(20%);
+    }
+
+    .star-preview-body {
+      padding: 12px 14px;
+    }
+
+    .star-preview-name {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #c8b8e8;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .star-preview-issue {
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.55rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #5a4080;
+      display: block;
+    }
+
+    .star-preview-hint {
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.5rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #3d2d5a;
+      display: block;
+      margin-top: 8px;
+    }
+
+    @media (max-width: 600px) {
+      .star-preview { width: 170px; }
+      .star-preview-photo { height: 100px; }
+    }
+
     /* ── Divider ── */
     .cluster-divider {
       text-align: center;
@@ -434,6 +506,16 @@
     </div>
   </main>
 
+  <!-- Star hover preview -->
+  <div class="star-preview" id="starPreview">
+    <img class="star-preview-photo" id="previewPhoto" src="" alt="">
+    <div class="star-preview-body">
+      <span class="star-preview-name" id="previewName"></span>
+      <span class="star-preview-issue" id="previewIssue"></span>
+      <span class="star-preview-hint" id="previewHint">click to read bio</span>
+    </div>
+  </div>
+
   <!-- Bio slide-out panel -->
   <div class="bio-overlay" id="bioOverlay"></div>
   <div class="bio-panel" id="bioPanel">
@@ -561,11 +643,59 @@
 
     var panel = document.getElementById('bioPanel');
     var overlay = document.getElementById('bioOverlay');
+    var preview = document.getElementById('starPreview');
     var activeNode = null;
+    var pinnedKey = null;
+    var hoverTimeout = null;
+
+    function positionPreview(node) {
+      var rect = node.getBoundingClientRect();
+      var pw = 200;
+      var scrollY = window.pageYOffset || document.documentElement.scrollTop;
+      var scrollX = window.pageXOffset || document.documentElement.scrollLeft;
+
+      // Position above the star, centered
+      var left = rect.left + scrollX + (rect.width / 2) - (pw / 2);
+      var top = rect.top + scrollY - preview.offsetHeight - 12;
+
+      // Keep within viewport horizontally
+      if (left < 8) left = 8;
+      if (left + pw > window.innerWidth - 8) left = window.innerWidth - pw - 8;
+
+      // If no room above, show below
+      if (top < scrollY + 8) {
+        top = rect.bottom + scrollY + 12;
+      }
+
+      preview.style.left = left + 'px';
+      preview.style.top = top + 'px';
+    }
+
+    function showPreview(key, node) {
+      var c = contributors[key];
+      if (!c) return;
+
+      document.getElementById('previewPhoto').src = c.photo;
+      document.getElementById('previewPhoto').alt = c.name;
+      document.getElementById('previewName').textContent = c.name;
+      document.getElementById('previewIssue').textContent = c.issue;
+      document.getElementById('previewHint').textContent = pinnedKey === key ? 'click to read full bio' : 'click to pin';
+
+      preview.classList.add('visible');
+      // Need to position after visible so offsetHeight is correct
+      requestAnimationFrame(function() { positionPreview(node); });
+    }
+
+    function hidePreview() {
+      preview.classList.remove('visible', 'pinned');
+      pinnedKey = null;
+    }
 
     function openBio(key) {
       var c = contributors[key];
       if (!c) return;
+
+      hidePreview();
 
       document.getElementById('bioPhoto').src = c.photo;
       document.getElementById('bioPhoto').alt = c.name;
@@ -591,15 +721,64 @@
     }
 
     document.querySelectorAll('.star-node').forEach(function(node) {
-      node.addEventListener('click', function() {
-        openBio(this.dataset.contributor);
+      // Hover: show preview (unless pinned to a different star)
+      node.addEventListener('mouseenter', function() {
+        var key = this.dataset.contributor;
+        clearTimeout(hoverTimeout);
+        if (pinnedKey && pinnedKey !== key) return; // don't override pinned preview
+        showPreview(key, this);
       });
+
+      node.addEventListener('mouseleave', function() {
+        if (pinnedKey) return; // keep pinned preview visible
+        hoverTimeout = setTimeout(hidePreview, 200);
+      });
+
+      // Click: first click pins the preview, second click opens full bio
+      node.addEventListener('click', function() {
+        var key = this.dataset.contributor;
+        if (pinnedKey === key) {
+          // Already pinned — open full bio
+          openBio(key);
+        } else {
+          // Pin the preview
+          if (pinnedKey) hidePreview();
+          pinnedKey = key;
+          preview.classList.add('pinned');
+          showPreview(key, this);
+        }
+      });
+    });
+
+    // Hovering over the preview itself keeps it visible
+    preview.addEventListener('mouseenter', function() {
+      clearTimeout(hoverTimeout);
+    });
+
+    preview.addEventListener('mouseleave', function() {
+      if (pinnedKey) return;
+      hoverTimeout = setTimeout(hidePreview, 200);
+    });
+
+    // Click on preview opens full bio
+    preview.addEventListener('click', function() {
+      if (pinnedKey) openBio(pinnedKey);
+    });
+
+    // Click elsewhere dismisses pinned preview
+    document.addEventListener('click', function(e) {
+      if (pinnedKey && !e.target.closest('.star-node') && !e.target.closest('.star-preview')) {
+        hidePreview();
+      }
     });
 
     document.getElementById('bioClose').addEventListener('click', closeBio);
     overlay.addEventListener('click', closeBio);
     document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') closeBio();
+      if (e.key === 'Escape') {
+        if (pinnedKey) { hidePreview(); return; }
+        closeBio();
+      }
     });
   </script>
 
