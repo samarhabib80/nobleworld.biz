@@ -401,9 +401,10 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 28px 36px;
+      gap: 24px 20px;
       position: relative;
       z-index: 2;
+      padding: 20px 10px;
     }
 
     .team-star-node {
@@ -412,9 +413,10 @@
       text-align: center;
       cursor: pointer;
       transition: transform 0.3s ease;
+      transform: translate(var(--dx, 0px), var(--dy, 0px));
     }
 
-    .team-star-node:hover { transform: scale(1.12); }
+    .team-star-node:hover { transform: translate(var(--dx, 0px), var(--dy, 0px)) scale(1.12); }
 
     .team-star-glow {
       width: 18px;
@@ -573,12 +575,92 @@
       100% { opacity: 0.8; }
     }
 
+    /* ── Star hover preview ── */
+    .team-star-preview {
+      position: absolute;
+      width: 280px;
+      max-height: 420px;
+      background: linear-gradient(180deg, #1a1228 0%, #12101a 100%);
+      border: 1px solid #3d2d5a;
+      border-radius: 8px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.6), 0 0 20px rgba(123,94,167,0.15);
+      z-index: 500;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(8px);
+      transition: opacity 0.25s ease, transform 0.25s ease;
+      overflow: hidden;
+    }
+
+    .team-star-preview.visible {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    .team-star-preview-photo {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      object-position: center 20%;
+      display: block;
+      filter: grayscale(20%);
+    }
+
+    .team-star-preview-body {
+      padding: 14px 16px 16px;
+    }
+
+    .team-star-preview-name {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #c8b8e8;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .team-star-preview-role {
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.55rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #5a4080;
+      display: block;
+      margin-bottom: 12px;
+    }
+
+    .team-star-preview-bio {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 0.82rem;
+      color: #8a7aaa;
+      line-height: 1.6;
+      display: -webkit-box;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .team-star-preview-bio em { color: #a08ad0; }
+
+    .team-star-preview-hint {
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.5rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #3d2d5a;
+      display: block;
+      margin-top: 10px;
+    }
+
     @media (max-width: 600px) {
-      .team-star-field { gap: 20px 24px; }
-      .team-star-node  { width: 68px; }
+      .team-star-field { gap: 16px 16px; }
+      .team-star-node  { width: 68px; --dx: 0px !important; --dy: 0px !important; }
       .team-star-glow  { width: 14px; height: 14px; }
       .team-star-name  { font-size: 0.52rem; }
       .team-bio-panel  { width: 100vw; max-width: 100vw; right: -100vw; }
+      .team-star-preview { width: 240px; max-height: 360px; }
+      .team-star-preview-photo { height: 120px; }
     }
 
     /* ── Exhibit Slideshow ── */
@@ -1113,55 +1195,55 @@
       <div class="team-constellation">
         <div class="team-cluster-label">07 . 2010</div>
         <div class="team-star-field">
-          <div class="team-star-node" style="--pulse:3.2s" data-contributor="cremona">
+          <div class="team-star-node" style="--pulse:3.2s; --dx:12px; --dy:-8px" data-contributor="cremona">
             <div class="team-star-glow"></div>
             <span class="team-star-name">Cinzia Cremona</span>
           </div>
-          <div class="team-star-node" style="--pulse:2.8s" data-contributor="fan">
+          <div class="team-star-node" style="--pulse:2.8s; --dx:-18px; --dy:14px" data-contributor="fan">
             <div class="team-star-glow"></div>
             <span class="team-star-name">Iris Fan Xing</span>
           </div>
-          <div class="team-star-node" style="--pulse:3.5s" data-contributor="frank">
+          <div class="team-star-node" style="--pulse:3.5s; --dx:8px; --dy:22px" data-contributor="frank">
             <div class="team-star-glow"></div>
             <span class="team-star-name">Diane Frank</span>
           </div>
-          <div class="team-star-node" style="--pulse:2.6s" data-contributor="gander">
+          <div class="team-star-node" style="--pulse:2.6s; --dx:-14px; --dy:-16px" data-contributor="gander">
             <div class="team-star-glow"></div>
             <span class="team-star-name">Forrest Gander</span>
           </div>
-          <div class="team-star-node" style="--pulse:3.8s" data-contributor="habib">
+          <div class="team-star-node" style="--pulse:3.8s; --dx:20px; --dy:6px" data-contributor="habib">
             <div class="team-star-glow"></div>
             <span class="team-star-name">Samar Habib</span>
           </div>
-          <div class="team-star-node" style="--pulse:3.0s" data-contributor="kelen">
+          <div class="team-star-node" style="--pulse:3.0s; --dx:-6px; --dy:-20px" data-contributor="kelen">
             <div class="team-star-glow"></div>
             <span class="team-star-name">Kit Kelen</span>
           </div>
-          <div class="team-star-node" style="--pulse:2.4s" data-contributor="koukoutsis">
+          <div class="team-star-node" style="--pulse:2.4s; --dx:16px; --dy:18px" data-contributor="koukoutsis">
             <div class="team-star-glow"></div>
             <span class="team-star-name">Helen Koukoutsis</span>
           </div>
-          <div class="team-star-node" style="--pulse:3.3s" data-contributor="ksel">
+          <div class="team-star-node" style="--pulse:3.3s; --dx:-22px; --dy:-4px" data-contributor="ksel">
             <div class="team-star-glow"></div>
             <span class="team-star-name">Dominika Ksel</span>
           </div>
-          <div class="team-star-node" style="--pulse:2.9s" data-contributor="lorber">
+          <div class="team-star-node" style="--pulse:2.9s; --dx:4px; --dy:12px" data-contributor="lorber">
             <div class="team-star-glow"></div>
             <span class="team-star-name">Brendan Lorber</span>
           </div>
-          <div class="team-star-node" style="--pulse:3.6s" data-contributor="pucciani">
+          <div class="team-star-node" style="--pulse:3.6s; --dx:-10px; --dy:-24px" data-contributor="pucciani">
             <div class="team-star-glow"></div>
             <span class="team-star-name">Donna Pucciani</span>
           </div>
-          <div class="team-star-node" style="--pulse:2.7s" data-contributor="tata_c">
+          <div class="team-star-node" style="--pulse:2.7s; --dx:24px; --dy:10px" data-contributor="tata_c">
             <div class="team-star-glow"></div>
             <span class="team-star-name">Michael Angelo Tata</span>
           </div>
-          <div class="team-star-node" style="--pulse:3.1s" data-contributor="wilson_c">
+          <div class="team-star-node" style="--pulse:3.1s; --dx:-16px; --dy:8px" data-contributor="wilson_c">
             <div class="team-star-glow"></div>
             <span class="team-star-name">Ronaldo V. Wilson</span>
           </div>
-          <div class="team-star-node" style="--pulse:3.4s" data-contributor="xavier">
+          <div class="team-star-node" style="--pulse:3.4s; --dx:6px; --dy:-12px" data-contributor="xavier">
             <div class="team-star-glow"></div>
             <span class="team-star-name">Emanuel Xavier</span>
           </div>
@@ -1173,15 +1255,15 @@
       <div class="team-constellation">
         <div class="team-cluster-label">02 . 2011</div>
         <div class="team-star-field">
-          <div class="team-star-node" style="--pulse:2.5s" data-contributor="jeffreys">
+          <div class="team-star-node" style="--pulse:2.5s; --dx:18px; --dy:10px" data-contributor="jeffreys">
             <div class="team-star-glow"></div>
             <span class="team-star-name">Joe E. Jeffreys</span>
           </div>
-          <div class="team-star-node" style="--pulse:3.7s" data-contributor="lang">
+          <div class="team-star-node" style="--pulse:3.7s; --dx:-14px; --dy:-18px" data-contributor="lang">
             <div class="team-star-glow"></div>
             <span class="team-star-name">Dana Lang</span>
           </div>
-          <div class="team-star-node" style="--pulse:2.3s" data-contributor="wood">
+          <div class="team-star-node" style="--pulse:2.3s; --dx:8px; --dy:14px" data-contributor="wood">
             <div class="team-star-glow"></div>
             <span class="team-star-name">Rose Wood</span>
           </div>
@@ -1199,37 +1281,37 @@
         <div class="team-cluster-label">Editorial &amp; Advisory</div>
         <div class="team-star-field">
 
-          <div class="team-star-node" style="--pulse:3.2s" data-team="tata">
+          <div class="team-star-node" style="--pulse:3.2s; --dx:-10px; --dy:14px" data-team="tata">
             <div class="team-star-glow"></div>
             <span class="team-star-name">Michael Angelo Tata</span>
           </div>
 
-          <div class="team-star-node" style="--pulse:2.8s" data-team="beirne">
+          <div class="team-star-node" style="--pulse:2.8s; --dx:16px; --dy:-10px" data-team="beirne">
             <div class="team-star-glow"></div>
             <span class="team-star-name">Rebecca Beirne</span>
           </div>
 
-          <div class="team-star-node" style="--pulse:3.5s" data-team="boyle">
+          <div class="team-star-node" style="--pulse:3.5s; --dx:-20px; --dy:6px" data-team="boyle">
             <div class="team-star-glow"></div>
             <span class="team-star-name">David Boyle</span>
           </div>
 
-          <div class="team-star-node" style="--pulse:2.6s" data-team="eberly">
+          <div class="team-star-node" style="--pulse:2.6s; --dx:12px; --dy:20px" data-team="eberly">
             <div class="team-star-glow"></div>
             <span class="team-star-name">Clifford Eberly</span>
           </div>
 
-          <div class="team-star-node" style="--pulse:3.8s" data-team="flaster">
+          <div class="team-star-node" style="--pulse:3.8s; --dx:-8px; --dy:-18px" data-team="flaster">
             <div class="team-star-glow"></div>
             <span class="team-star-name">Cora Flaster</span>
           </div>
 
-          <div class="team-star-node" style="--pulse:3.0s" data-team="olivos">
+          <div class="team-star-node" style="--pulse:3.0s; --dx:22px; --dy:4px" data-team="olivos">
             <div class="team-star-glow"></div>
             <span class="team-star-name">Roman Olivos</span>
           </div>
 
-          <div class="team-star-node" style="--pulse:2.4s" data-team="wilson">
+          <div class="team-star-node" style="--pulse:2.4s; --dx:-14px; --dy:-8px" data-team="wilson">
             <div class="team-star-glow"></div>
             <span class="team-star-name">Ronaldo Wilson</span>
           </div>
@@ -1241,6 +1323,17 @@
     </div>
 
   </main>
+
+  <!-- Star hover preview -->
+  <div class="team-star-preview" id="teamStarPreview">
+    <img class="team-star-preview-photo" id="teamPreviewPhoto" src="" alt="">
+    <div class="team-star-preview-body">
+      <span class="team-star-preview-name" id="teamPreviewName"></span>
+      <span class="team-star-preview-role" id="teamPreviewRole"></span>
+      <p class="team-star-preview-bio" id="teamPreviewBio"></p>
+      <span class="team-star-preview-hint">click to read full bio</span>
+    </div>
+  </div>
 
   <!-- Team bio slide-out panel -->
   <div class="team-bio-overlay" id="teamBioOverlay"></div>
@@ -1529,17 +1622,82 @@ document.querySelectorAll('.exhibit').forEach(function(exhibit) {
     }
   }
 
+  var preview = document.getElementById('teamStarPreview');
+  var hoverTimeout = null;
+
+  function positionPreview(node) {
+    var rect = node.getBoundingClientRect();
+    var pw = 280;
+    var scrollY = window.pageYOffset || document.documentElement.scrollTop;
+    var scrollX = window.pageXOffset || document.documentElement.scrollLeft;
+
+    var left = rect.left + scrollX + (rect.width / 2) - (pw / 2);
+    var top = rect.top + scrollY - preview.offsetHeight - 12;
+
+    if (left < 8) left = 8;
+    if (left + pw > window.innerWidth - 8) left = window.innerWidth - pw - 8;
+
+    if (top < scrollY + 8) {
+      top = rect.bottom + scrollY + 12;
+    }
+
+    preview.style.left = left + 'px';
+    preview.style.top = top + 'px';
+  }
+
+  function showPreview(key, node) {
+    var m = people[key];
+    if (!m) return;
+
+    document.getElementById('teamPreviewPhoto').src = m.photo;
+    document.getElementById('teamPreviewPhoto').alt = m.name;
+    document.getElementById('teamPreviewPhoto').style.objectPosition = m.photoPosition || 'center 20%';
+    document.getElementById('teamPreviewName').textContent = m.name;
+    document.getElementById('teamPreviewRole').textContent = m.role;
+    document.getElementById('teamPreviewBio').innerHTML = m.bio;
+
+    preview.classList.add('visible');
+    requestAnimationFrame(function() { positionPreview(node); });
+  }
+
+  function hidePreview() {
+    preview.classList.remove('visible');
+  }
+
   document.querySelectorAll('.team-star-node').forEach(function(node) {
+    node.addEventListener('mouseenter', function() {
+      var key = this.dataset.team || this.dataset.contributor;
+      clearTimeout(hoverTimeout);
+      showPreview(key, this);
+    });
+
+    node.addEventListener('mouseleave', function() {
+      hoverTimeout = setTimeout(hidePreview, 200);
+    });
+
     node.addEventListener('click', function() {
       var key = this.dataset.team || this.dataset.contributor;
+      clearTimeout(hoverTimeout);
+      hidePreview();
       openBio(key, this);
     });
+  });
+
+  preview.addEventListener('mouseenter', function() {
+    clearTimeout(hoverTimeout);
+  });
+
+  preview.addEventListener('mouseleave', function() {
+    hoverTimeout = setTimeout(hidePreview, 200);
   });
 
   document.getElementById('teamBioClose').addEventListener('click', closeBio);
   overlay.addEventListener('click', closeBio);
   document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') closeBio();
+    if (e.key === 'Escape') {
+      hidePreview();
+      closeBio();
+    }
   });
 })();
 </script>
