@@ -107,9 +107,10 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 28px 36px;
+      gap: 24px 20px;
       position: relative;
       z-index: 2;
+      padding: 20px 10px;
     }
 
     .star-node {
@@ -118,9 +119,10 @@
       text-align: center;
       cursor: pointer;
       transition: transform 0.3s ease;
+      transform: translate(var(--dx, 0px), var(--dy, 0px));
     }
 
-    .star-node:hover { transform: scale(1.12); }
+    .star-node:hover { transform: translate(var(--dx, 0px), var(--dy, 0px)) scale(1.12); }
 
     .star-glow {
       width: 18px;
@@ -283,10 +285,11 @@
       100% { opacity: 0.8; }
     }
 
-    /* ── Star preview tooltip ── */
+    /* ── Star preview card ── */
     .star-preview {
       position: absolute;
-      width: 200px;
+      width: 280px;
+      max-height: 420px;
       background: linear-gradient(180deg, #1a1228 0%, #12101a 100%);
       border: 1px solid #3d2d5a;
       border-radius: 8px;
@@ -307,11 +310,13 @@
 
     .star-preview.pinned {
       pointer-events: auto;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.6), 0 0 30px rgba(123,94,167,0.3);
+      border-color: #7b5ea7;
     }
 
     .star-preview-photo {
       width: 100%;
-      height: 120px;
+      height: 160px;
       object-fit: cover;
       object-position: center 20%;
       display: block;
@@ -319,12 +324,12 @@
     }
 
     .star-preview-body {
-      padding: 12px 14px;
+      padding: 14px 16px 16px;
     }
 
     .star-preview-name {
       font-family: 'Playfair Display', Georgia, serif;
-      font-size: 0.85rem;
+      font-size: 1rem;
       font-weight: 600;
       color: #c8b8e8;
       display: block;
@@ -338,6 +343,30 @@
       text-transform: uppercase;
       color: #5a4080;
       display: block;
+      margin-bottom: 12px;
+    }
+
+    .star-preview-bio {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 0.82rem;
+      color: #8a7aaa;
+      line-height: 1.6;
+      display: -webkit-box;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .star-preview-bio em { color: #a08ad0; }
+
+    .star-preview.pinned .star-preview-bio {
+      -webkit-line-clamp: unset;
+      overflow: visible;
+    }
+
+    .star-preview.pinned {
+      max-height: 80vh;
+      overflow-y: auto;
     }
 
     .star-preview-hint {
@@ -347,12 +376,17 @@
       text-transform: uppercase;
       color: #3d2d5a;
       display: block;
-      margin-top: 8px;
+      margin-top: 10px;
+    }
+
+    .star-preview.pinned .star-preview-hint {
+      display: none;
     }
 
     @media (max-width: 600px) {
-      .star-preview { width: 170px; }
-      .star-preview-photo { height: 100px; }
+      .star-preview { width: 240px; max-height: 360px; }
+      .star-preview-photo { height: 120px; }
+      .star-preview.pinned { max-height: 70vh; }
     }
 
     /* ── Divider ── */
@@ -366,8 +400,8 @@
 
     /* ── Responsive ── */
     @media (max-width: 600px) {
-      .star-field { gap: 20px 24px; }
-      .star-node  { width: 68px; }
+      .star-field { gap: 16px 16px; }
+      .star-node  { width: 68px; --dx: 0px !important; --dy: 0px !important; }
       .star-glow  { width: 14px; height: 14px; }
       .star-name  { font-size: 0.52rem; }
       .bio-panel  { width: 100vw; max-width: 100vw; right: -100vw; }
@@ -408,67 +442,67 @@
         <div class="cluster-label">07 . 2010</div>
         <div class="star-field">
 
-          <div class="star-node" style="--pulse:3.2s" data-contributor="cremona">
+          <div class="star-node" style="--pulse:3.2s; --dx:12px; --dy:-8px" data-contributor="cremona">
             <div class="star-glow"></div>
             <span class="star-name">Cinzia Cremona</span>
           </div>
 
-          <div class="star-node" style="--pulse:2.8s" data-contributor="fan">
+          <div class="star-node" style="--pulse:2.8s; --dx:-18px; --dy:14px" data-contributor="fan">
             <div class="star-glow"></div>
             <span class="star-name">Iris Fan Xing</span>
           </div>
 
-          <div class="star-node" style="--pulse:3.5s" data-contributor="frank">
+          <div class="star-node" style="--pulse:3.5s; --dx:8px; --dy:22px" data-contributor="frank">
             <div class="star-glow"></div>
             <span class="star-name">Diane Frank</span>
           </div>
 
-          <div class="star-node" style="--pulse:2.6s" data-contributor="gander">
+          <div class="star-node" style="--pulse:2.6s; --dx:-14px; --dy:-16px" data-contributor="gander">
             <div class="star-glow"></div>
             <span class="star-name">Forrest Gander</span>
           </div>
 
-          <div class="star-node" style="--pulse:3.8s" data-contributor="habib">
+          <div class="star-node" style="--pulse:3.8s; --dx:20px; --dy:6px" data-contributor="habib">
             <div class="star-glow"></div>
             <span class="star-name">Samar Habib</span>
           </div>
 
-          <div class="star-node" style="--pulse:3.0s" data-contributor="kelen">
+          <div class="star-node" style="--pulse:3.0s; --dx:-6px; --dy:-20px" data-contributor="kelen">
             <div class="star-glow"></div>
             <span class="star-name">Kit Kelen</span>
           </div>
 
-          <div class="star-node" style="--pulse:2.4s" data-contributor="koukoutsis">
+          <div class="star-node" style="--pulse:2.4s; --dx:16px; --dy:18px" data-contributor="koukoutsis">
             <div class="star-glow"></div>
             <span class="star-name">Helen Koukoutsis</span>
           </div>
 
-          <div class="star-node" style="--pulse:3.3s" data-contributor="ksel">
+          <div class="star-node" style="--pulse:3.3s; --dx:-22px; --dy:-4px" data-contributor="ksel">
             <div class="star-glow"></div>
             <span class="star-name">Dominika Ksel</span>
           </div>
 
-          <div class="star-node" style="--pulse:2.9s" data-contributor="lorber">
+          <div class="star-node" style="--pulse:2.9s; --dx:4px; --dy:12px" data-contributor="lorber">
             <div class="star-glow"></div>
             <span class="star-name">Brendan Lorber</span>
           </div>
 
-          <div class="star-node" style="--pulse:3.6s" data-contributor="pucciani">
+          <div class="star-node" style="--pulse:3.6s; --dx:-10px; --dy:-24px" data-contributor="pucciani">
             <div class="star-glow"></div>
             <span class="star-name">Donna Pucciani</span>
           </div>
 
-          <div class="star-node" style="--pulse:2.7s" data-contributor="tata">
+          <div class="star-node" style="--pulse:2.7s; --dx:24px; --dy:10px" data-contributor="tata">
             <div class="star-glow"></div>
             <span class="star-name">Michael Angelo Tata</span>
           </div>
 
-          <div class="star-node" style="--pulse:3.1s" data-contributor="wilson">
+          <div class="star-node" style="--pulse:3.1s; --dx:-16px; --dy:8px" data-contributor="wilson">
             <div class="star-glow"></div>
             <span class="star-name">Ronaldo V. Wilson</span>
           </div>
 
-          <div class="star-node" style="--pulse:3.4s" data-contributor="xavier">
+          <div class="star-node" style="--pulse:3.4s; --dx:6px; --dy:-12px" data-contributor="xavier">
             <div class="star-glow"></div>
             <span class="star-name">Emanuel Xavier</span>
           </div>
@@ -483,17 +517,17 @@
         <div class="cluster-label">02 . 2011</div>
         <div class="star-field">
 
-          <div class="star-node" style="--pulse:2.5s" data-contributor="jeffreys">
+          <div class="star-node" style="--pulse:2.5s; --dx:18px; --dy:10px" data-contributor="jeffreys">
             <div class="star-glow"></div>
             <span class="star-name">Joe E. Jeffreys</span>
           </div>
 
-          <div class="star-node" style="--pulse:3.7s" data-contributor="lang">
+          <div class="star-node" style="--pulse:3.7s; --dx:-14px; --dy:-18px" data-contributor="lang">
             <div class="star-glow"></div>
             <span class="star-name">Dana Lang</span>
           </div>
 
-          <div class="star-node" style="--pulse:2.3s" data-contributor="wood">
+          <div class="star-node" style="--pulse:2.3s; --dx:8px; --dy:14px" data-contributor="wood">
             <div class="star-glow"></div>
             <span class="star-name">Rose Wood</span>
           </div>
@@ -512,7 +546,8 @@
     <div class="star-preview-body">
       <span class="star-preview-name" id="previewName"></span>
       <span class="star-preview-issue" id="previewIssue"></span>
-      <span class="star-preview-hint" id="previewHint">click to read bio</span>
+      <p class="star-preview-bio" id="previewBio"></p>
+      <span class="star-preview-hint">click to expand</span>
     </div>
   </div>
 
@@ -625,6 +660,7 @@
         name: "Joe E. Jeffreys",
         issue: "02.2011",
         photo: "images/423_JEJbyVesPitts.jpg",
+        photoPosition: "top center",
         bio: "Joe E. Jeffreys is a drag historian. He teaches Theatre Studies at New York University\u2019s Tisch School of the Arts Drama Department and has also taught at Stony Brook University, Purchase and Lehman College. He has published in encyclopedias, journals, including <em>Women in Performance</em> and <em>Theatre History Studies</em>, and in the popular press, from Time Out New York and The Village Voice to Out and The Advocate. He produces the series Drag Show Video Verit\u00e9 and his video shorts have been screened internationally. Photo taken by Ves Pitts."
       },
       lang: {
@@ -650,7 +686,7 @@
 
     function positionPreview(node) {
       var rect = node.getBoundingClientRect();
-      var pw = 200;
+      var pw = 280;
       var scrollY = window.pageYOffset || document.documentElement.scrollTop;
       var scrollX = window.pageXOffset || document.documentElement.scrollLeft;
 
@@ -677,9 +713,10 @@
 
       document.getElementById('previewPhoto').src = c.photo;
       document.getElementById('previewPhoto').alt = c.name;
+      document.getElementById('previewPhoto').style.objectPosition = c.photoPosition || 'center 20%';
       document.getElementById('previewName').textContent = c.name;
       document.getElementById('previewIssue').textContent = c.issue;
-      document.getElementById('previewHint').textContent = pinnedKey === key ? 'click to read full bio' : 'click to pin';
+      document.getElementById('previewBio').innerHTML = c.bio;
 
       preview.classList.add('visible');
       // Need to position after visible so offsetHeight is correct
@@ -699,6 +736,7 @@
 
       document.getElementById('bioPhoto').src = c.photo;
       document.getElementById('bioPhoto').alt = c.name;
+      document.getElementById('bioPhoto').style.objectPosition = c.photoPosition || 'center 20%';
       document.getElementById('bioName').textContent = c.name;
       document.getElementById('bioIssue').textContent = c.issue;
       document.getElementById('bioText').innerHTML = c.bio;
@@ -734,18 +772,21 @@
         hoverTimeout = setTimeout(hidePreview, 200);
       });
 
-      // Click: first click pins the preview, second click opens full bio
+      // Click: pin the preview so it persists with full bio visible
       node.addEventListener('click', function() {
         var key = this.dataset.contributor;
         if (pinnedKey === key) {
-          // Already pinned — open full bio
-          openBio(key);
+          // Already pinned — unpin
+          hidePreview();
         } else {
           // Pin the preview
           if (pinnedKey) hidePreview();
           pinnedKey = key;
           preview.classList.add('pinned');
           showPreview(key, this);
+          // Reposition after expansion
+          var self = this;
+          requestAnimationFrame(function() { positionPreview(self); });
         }
       });
     });
@@ -758,11 +799,6 @@
     preview.addEventListener('mouseleave', function() {
       if (pinnedKey) return;
       hoverTimeout = setTimeout(hidePreview, 200);
-    });
-
-    // Click on preview opens full bio
-    preview.addEventListener('click', function() {
-      if (pinnedKey) openBio(pinnedKey);
     });
 
     // Click elsewhere dismisses pinned preview
